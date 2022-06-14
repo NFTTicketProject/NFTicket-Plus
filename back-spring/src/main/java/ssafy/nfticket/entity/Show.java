@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Show {
+
     @Id @GeneratedValue
     private Long id;
 
