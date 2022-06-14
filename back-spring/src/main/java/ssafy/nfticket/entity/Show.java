@@ -8,7 +8,7 @@ import javax.persistence.*;
  * 공연 정보
  */
 @Entity
-@Table(name = "show")
+@Table(name = "shows")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
