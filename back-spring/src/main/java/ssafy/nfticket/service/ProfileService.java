@@ -26,4 +26,13 @@ public class ProfileService {
         return newProfile;
     }
 
+    public Profile getProfile(String walletAddress) {
+        Profile profile = profileRepository.findTop1ByWalletId(walletAddress);
+        if (profile != null) {
+            return profile;
+        } else {
+            throw new IllegalStateException("프로필 없음");
+        }
+    }
+
 }
