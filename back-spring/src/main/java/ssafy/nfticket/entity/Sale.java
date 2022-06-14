@@ -3,6 +3,7 @@ package ssafy.nfticket.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * 판매 정보
@@ -13,14 +14,15 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@Builder
 public class Sale {
     @Id @GeneratedValue
     private Long id;
 
     private Integer showScheduleId;
     private String description;
-    private Integer startedAt;
-    private Integer endedAt;
+    private LocalDateTime startedAt;
+    private LocalDateTime endedAt;
 
 
 
