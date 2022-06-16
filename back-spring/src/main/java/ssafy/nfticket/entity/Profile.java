@@ -3,7 +3,6 @@ package ssafy.nfticket.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
 
 /**
  * 해당 유저 관련 정보
@@ -21,8 +20,6 @@ public class Profile {
     private String walletId;
     private String nickname;
     private String description;
-
-//
     private Integer createdAt;
     private String imageUri;
     private String gallery;

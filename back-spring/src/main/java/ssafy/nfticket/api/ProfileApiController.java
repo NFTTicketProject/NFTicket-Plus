@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ssafy.nfticket.dto.profile.*;
 import ssafy.nfticket.dto.response.ErrorResponse;
 import ssafy.nfticket.dto.simple.SimpleProfileDto;
@@ -17,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/profile")
 public class ProfileApiController {
 
     private final ProfileService profileService;
@@ -24,24 +22,11 @@ public class ProfileApiController {
     private final MessageSource messageSource;
 
     /**
-     * 지갑 소유자의 프로필 정보 생성 내지 기존 프로필 반환
-     * @param walletAddress
-     * @return
-     */
-    @PostMapping("/account/{walletAddress}")
-    public ResponseEntity signUp(@PathVariable("walletAddress") String walletAddress) {
-
-        Profile newProfile = profileService.join(walletAddress);
-
-        return ResponseEntity.ok().body(newProfile);
-    }
-
-    /**
      * 지갑 소유자의 프로필 조회 (타인)
      * @param walletAddress
      * @return
      */
-    @GetMapping("/profile/{walletAddress}")
+    @GetMapping("/{walletAddress}")
     public ResponseEntity getProfile(@PathVariable("walletAddress") String walletAddress) {
         try {
             Profile newProfile = profileService.getProfile(walletAddress);
@@ -57,7 +42,7 @@ public class ProfileApiController {
      * @param walletAddress
      * @return
      */
-    @GetMapping("/profile/{walletAddress}/nickname")
+    @GetMapping("/{walletAddress}/nickname")
     public ResponseEntity getProfileNickname(@PathVariable("walletAddress") String walletAddress) {
         try {
             Profile newProfile = profileService.getProfile(walletAddress);
@@ -73,7 +58,7 @@ public class ProfileApiController {
      * @param walletAddress
      * @return
      */
-    @GetMapping("/profile/{walletAddress}/description")
+    @GetMapping("/{walletAddress}/description")
     public ResponseEntity getProfileDescription(@PathVariable("walletAddress") String walletAddress) {
         try {
             Profile newProfile = profileService.getProfile(walletAddress);
@@ -89,7 +74,7 @@ public class ProfileApiController {
      * @param walletAddress
      * @return
      */
-    @GetMapping("/profile/{walletAddress}/image-uri")
+    @GetMapping("/{walletAddress}/image-uri")
     public ResponseEntity getProfileImage(@PathVariable("walletAddress") String walletAddress) {
         try {
             Profile newProfile = profileService.getProfile(walletAddress);
@@ -105,7 +90,7 @@ public class ProfileApiController {
      * @param walletAddress
      * @return
      */
-    @GetMapping("/profile/{walletAddress}/created-at")
+    @GetMapping("/{walletAddress}/created-at")
     public ResponseEntity getProfileCreatedAt(@PathVariable("walletAddress") String walletAddress) {
         try {
             Profile newProfile = profileService.getProfile(walletAddress);
@@ -121,7 +106,7 @@ public class ProfileApiController {
      * @param walletAddress
      * @return
      */
-    @GetMapping("/profile/{walletAddress}/gallery")
+    @GetMapping("/{walletAddress}/gallery")
     public ResponseEntity getProfileGallery(@PathVariable("walletAddress") String walletAddress) {
         try {
             Profile newProfile = profileService.getProfile(walletAddress);
