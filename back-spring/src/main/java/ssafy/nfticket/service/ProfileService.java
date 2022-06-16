@@ -3,8 +3,15 @@ package ssafy.nfticket.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ssafy.nfticket.dto.profile.SimpleProfileInfoDto;
+import ssafy.nfticket.entity.RandomAdjective;
+import ssafy.nfticket.entity.RandomNoun;
 import ssafy.nfticket.repository.ProfileRepository;
 import ssafy.nfticket.entity.Profile;
+import ssafy.nfticket.repository.RandomAdjectiveRepository;
+import ssafy.nfticket.repository.RandomNounRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -12,14 +19,16 @@ import ssafy.nfticket.entity.Profile;
 public class ProfileService {
 
     private final ProfileRepository profileRepository;
+    private final RandomAdjectiveRepository randomAdjectiveRepository;
+    private final RandomNounRepository randomNounRepository;
 
     @Transactional
     public Profile join(String walletId) {
         Profile newProfile = new Profile();
-        newProfile.setNickname("통통한 너구리");
-        newProfile.setDescription("너구리 한마리 어쩌구");
-        newProfile.setImageUri("임시");
-        newProfile.setGallery("gallery5");
+        newProfile.setNickname(getRandomNickname());
+        newProfile.setDescription("자기 소개를 입력해주세요!");
+        newProfile.setImageUri("none");
+        newProfile.setGallery("galleryS");
         newProfile.setWalletId(walletId);
 
         profileRepository.save(newProfile);
@@ -35,4 +44,39 @@ public class ProfileService {
         }
     }
 
+    public String getRandomNickname() {
+        List<RandomAdjective> randomAdjectiveList = randomAdjectiveRepository.findAll();
+        List<RandomNoun> randomNounList = randomNounRepository.findAll();
+        String adjective = randomAdjectiveList.get((int) (Math.random() * randomAdjectiveList.size())).getAdjective();
+        String noun = randomNounList.get((int) (Math.random() * randomNounList.size())).getNoun();
+        return adjective + " " + noun;
+    }
+
+    public Profile updateProfile(Profile profile, SimpleProfileInfoDto updatedProfileInfo) {
+        profile.setNickname(updatedProfileInfo.getNickname());
+        profile.setDescription(updatedProfileInfo.getDescription());
+        profile.setImageUri(updatedProfileInfo.getImageUri());
+        profile.setGallery(updatedProfileInfo.getGallery());
+        profileRepository.save(profile);
+
+        return profile;
+    }
+
+    public Profile updateNickname(Profile profile, String nickname) {
+        profile.setNickname(nickname);
+        profileRepository.save(profile);
+        return profile;
+    }
+
+    public Profile updateDescription(Profile profile, String description) {
+        profile.setDescription(description);
+        profileRepository.save(profile);
+        return profile;
+    }
+
+    public Profile updateImageUri(Profile profile, String imageUri) {
+        profile.setImageUri(imageUri);
+        profileRepository.save(profile);
+        return profile;
+    }
 }
