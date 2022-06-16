@@ -2,19 +2,12 @@ package ssafy.nfticket.dto.profile;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class SimpleProfileDescDto {
-
-//    private Long id;
-//
-//    private String walletId;
-//    private String nickname;
+    @NotBlank(message = "유효하지 않은 소개입니다.")
     private String description;
-
-//    private Integer createdAt;
-//    private String imageUri;
-//    private String gallery;
-
 
     public SimpleProfileDescDto(String description) {
         this.description = description;

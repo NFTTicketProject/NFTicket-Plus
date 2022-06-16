@@ -2,19 +2,12 @@ package ssafy.nfticket.dto.profile;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class SimpleProfileImageUriDto {
-
-//    private Long id;
-//
-//    private String walletId;
-//    private String nickname;
-//    private String description;
-//
-//    private Integer createdAt;
+    @NotBlank(message = "유효하지 않은 이미지입니다.")
     private String imageUri;
-//    private String gallery;
-
 
     public SimpleProfileImageUriDto(String imageUri) {
         this.imageUri = imageUri;
