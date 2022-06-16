@@ -13,7 +13,7 @@ public class SaleRequestDto {
 
     int showScheduleId;
     String description;
-    LocalDateTime startedAt;
-    LocalDateTime endedAt;
+    int startedAt;
+    int endedAt;
 
 }

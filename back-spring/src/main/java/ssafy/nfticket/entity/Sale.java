@@ -21,8 +21,8 @@ public class Sale {
 
     private Integer showScheduleId;
     private String description;
-    private LocalDateTime startedAt;
-    private LocalDateTime endedAt;
+    private Integer startedAt;
+    private Integer endedAt;
 
 
 
