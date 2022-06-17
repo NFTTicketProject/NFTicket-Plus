@@ -1,6 +1,7 @@
 package ssafy.nfticket.service;
 
 import org.springframework.stereotype.Service;
+import ssafy.nfticket.dto.request.SaleShowScheduleIdRequestDto;
 import ssafy.nfticket.dto.sale.SaleShowScheduleIdDto;
 import ssafy.nfticket.dto.sale.SaleDto;
 import ssafy.nfticket.dto.request.SaleRequestDto;
@@ -15,4 +16,6 @@ public interface SaleService {
     public long updateSaleInfo(long saleId, SaleRequestDto saleRequestDto);
 
     public SaleShowScheduleIdDto getShowSchduleId(long saleId);
+
+    SaleShowScheduleIdDto updateShowScheduleId(long saleId, SaleShowScheduleIdRequestDto saleShowScheduleIdRequestDto);
 }

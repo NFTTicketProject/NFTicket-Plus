@@ -3,6 +3,7 @@ package ssafy.nfticket.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ssafy.nfticket.dto.request.SaleShowScheduleIdRequestDto;
 import ssafy.nfticket.dto.response.SaleShowScheduleIdResponseDto;
 import ssafy.nfticket.dto.sale.SaleDto;
 import ssafy.nfticket.dto.sale.SaleShowScheduleIdDto;
@@ -63,7 +64,6 @@ public class SaleServiceImpl implements SaleService {
         sale.setStartedAt(saleRequestDto.getStarted_at());
         sale.setEndedAt(saleRequestDto.getEnded_at());
         CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
-        saleRepository.flush();
         return sale.getId();
     }
 
@@ -73,6 +73,18 @@ public class SaleServiceImpl implements SaleService {
         SaleShowScheduleIdDto saleShowScheduleIdDto = new SaleShowScheduleIdDto();
         saleShowScheduleIdDto.setSale_id(sale.getId());
         saleShowScheduleIdDto.setShow_schedule_id(sale.getShowScheduleId());
+        return saleShowScheduleIdDto;
+    }
+
+    @Override
+    @Transactional
+    public SaleShowScheduleIdDto updateShowScheduleId(long saleId, SaleShowScheduleIdRequestDto saleShowScheduleIdRequestDto) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        sale.setShowScheduleId(saleShowScheduleIdRequestDto.getShow_schedule_id());
+        SaleShowScheduleIdDto saleShowScheduleIdDto = new SaleShowScheduleIdDto();
+        saleShowScheduleIdDto.setSale_id(sale.getId());
+        saleShowScheduleIdDto.setShow_schedule_id(sale.getShowScheduleId());
+        CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
         return saleShowScheduleIdDto;
     }
 

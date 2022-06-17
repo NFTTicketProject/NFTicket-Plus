@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ssafy.nfticket.dto.response.SaleShowScheduleIdResponseDto;
+import ssafy.nfticket.dto.request.SaleShowScheduleIdRequestDto;
 import ssafy.nfticket.dto.response.SaleShowScheduleIdResponseDto;
 import ssafy.nfticket.dto.sale.SaleDto;
 import ssafy.nfticket.dto.request.SaleRequestDto;
@@ -60,7 +60,6 @@ public class SaleApiController {
     @PatchMapping("/{sale_id}")
     public ResponseEntity updateSale(@PathVariable("sale_id") long saleId,
                                      @Valid @RequestBody SaleRequestDto saleRequestDto) throws Exception {
-
         try {
             long updatedSaleId = saleService.updateSaleInfo(saleId, saleRequestDto);
             if(updatedSaleId == saleId)
@@ -83,6 +82,21 @@ public class SaleApiController {
                 saleShowScheduleIdResponseDto.setShow_schedule_id(saleShowScheduleIdDto.getShow_schedule_id());
                 return ResponseEntity.ok().body(saleShowScheduleIdResponseDto);
             }else
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("잘못된 요청입니다.");
+        }
+    }
+
+    @PatchMapping("/{sale_id}/show-schedule-id")
+    public ResponseEntity updateShowScheduleId(@PathVariable("sale_id") long saleId,
+                                                   @Valid @RequestBody SaleShowScheduleIdRequestDto saleShowScheduleIdRequestDto) throws Exception {
+        try {
+            SaleShowScheduleIdDto saleShowScheduleIdDto = saleService.updateShowScheduleId(saleId, saleShowScheduleIdRequestDto);
+            if(saleShowScheduleIdDto.getSale_id() == saleId)
+                return ResponseEntity.ok().body(saleShowScheduleIdDto.getShow_schedule_id());
+            else
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
         } catch (IllegalStateException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
