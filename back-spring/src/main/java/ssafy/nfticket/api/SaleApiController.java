@@ -3,10 +3,7 @@ package ssafy.nfticket.api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ssafy.nfticket.dto.profile.SimpleProfileDescDto;
 import ssafy.nfticket.dto.sale.SaleDto;
 import ssafy.nfticket.entity.Profile;
@@ -46,7 +43,7 @@ public class SaleApiController {
         }
     }
 
-    @PostMapping()
+    @GetMapping()
     public ResponseEntity getSaleList() throws Exception {
 
         try {

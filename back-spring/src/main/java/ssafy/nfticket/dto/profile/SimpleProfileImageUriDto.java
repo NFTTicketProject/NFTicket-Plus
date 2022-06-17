@@ -1,12 +1,16 @@
 package ssafy.nfticket.dto.profile;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
 @Data
+@NoArgsConstructor
 public class SimpleProfileImageUriDto {
-    @NotBlank(message = "유효하지 않은 이미지입니다.")
+    @NotBlank()
+    @JsonProperty(value="image_uri")
     private String imageUri;
 
     public SimpleProfileImageUriDto(String imageUri) {
