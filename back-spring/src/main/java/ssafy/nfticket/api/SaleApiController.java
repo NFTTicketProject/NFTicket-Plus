@@ -3,10 +3,7 @@ package ssafy.nfticket.api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ssafy.nfticket.dto.profile.SimpleProfileDescDto;
 import ssafy.nfticket.dto.sale.SaleDto;
 import ssafy.nfticket.entity.Profile;
@@ -14,6 +11,7 @@ import ssafy.nfticket.request.SaleRequestDto;
 import ssafy.nfticket.response.SaleResponseDto;
 import ssafy.nfticket.service.SaleService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -31,7 +29,7 @@ public class SaleApiController {
 //            @ApiResponse(code = 500, message = "서버 오류")
 //    })
     @PostMapping()
-    public ResponseEntity registerSale(@RequestBody SaleRequestDto saleRequestDto) throws Exception {
+    public ResponseEntity registerSale(@RequestBody @Valid SaleRequestDto saleRequestDto) throws Exception {
 
         try {
             long saleId = saleService.register(saleRequestDto);
@@ -46,7 +44,7 @@ public class SaleApiController {
         }
     }
 
-    @PostMapping()
+    @GetMapping()
     public ResponseEntity getSaleList() throws Exception {
 
         try {
@@ -56,6 +54,22 @@ public class SaleApiController {
         } catch (IllegalStateException e) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
                     .body("Sale register fail");
+        }
+    }
+
+    @PatchMapping("/{sale_id}")
+    public ResponseEntity updateSale(@PathVariable("sale_id") long saleId,
+                                     @Valid @RequestBody SaleRequestDto saleRequestDto) throws Exception {
+
+        try {
+            long updatedSaleId = saleService.updateSaleInfo(saleId, saleRequestDto);
+            if(updatedSaleId == saleId)
+                return ResponseEntity.ok().body(saleId);
+            else
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("잘못된 요청입니다.");
         }
     }
 }

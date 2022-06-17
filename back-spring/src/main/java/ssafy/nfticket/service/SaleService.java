@@ -11,4 +11,5 @@ public interface SaleService {
 
     public long register(SaleRequestDto saleRequestDto);
     public List<SaleDto> getSaleList();
+    public long updateSaleInfo(long saleId, SaleRequestDto saleRequestDto);
 }

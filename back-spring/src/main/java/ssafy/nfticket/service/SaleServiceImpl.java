@@ -7,6 +7,7 @@ import ssafy.nfticket.dto.sale.SaleDto;
 import ssafy.nfticket.entity.Sale;
 import ssafy.nfticket.repository.SaleRepository;
 import ssafy.nfticket.request.SaleRequestDto;
+import ssafy.nfticket.util.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,10 @@ public class SaleServiceImpl implements SaleService {
     @Transactional
     public long register(SaleRequestDto saleRequestDto) {
 
-        Sale sale = Sale.builder().showScheduleId(saleRequestDto.getShowScheduleId())
+        Sale sale = Sale.builder().showScheduleId(saleRequestDto.getShow_schedule_id())
                 .description(saleRequestDto.getDescription())
-                .startedAt(saleRequestDto.getStartedAt())
-                .endedAt(saleRequestDto.getEndedAt())
+                .startedAt(saleRequestDto.getStarted_at())
+                .endedAt(saleRequestDto.getEnded_at())
                 .build();
         Sale saleObj = saleRepository.save(sale);
         saleRepository.flush();
@@ -50,6 +51,19 @@ public class SaleServiceImpl implements SaleService {
 
         return saleDtoList;
 
+    }
+
+    @Override
+    @Transactional
+    public long updateSaleInfo(long saleId, SaleRequestDto saleRequestDto) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        sale.setShowScheduleId(saleRequestDto.getShow_schedule_id());
+        sale.setDescription(saleRequestDto.getDescription());
+        sale.setStartedAt(saleRequestDto.getStarted_at());
+        sale.setEndedAt(saleRequestDto.getEnded_at());
+        CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
+        saleRepository.flush();
+        return sale.getId();
     }
 
 }
