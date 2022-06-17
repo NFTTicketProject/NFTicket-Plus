@@ -4,23 +4,23 @@ server:
 spring:
 
   # 마리아 DB(로컬)
-  #  datasource:
-  #    url: jdbc:mysql://localhost:3306/nfticket
-  #    driver-class-name: org.mariadb.jdbc.Driver
-  #    username: root
-  #    password: 1234
+  datasource:
+    url: jdbc:mariadb://localhost:3306/nfticket
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 1234
 
   # 마리아 DB(배포)
-  datasource:
-    url: jdbc:mariadb://stg-yswa-kr-practice-db-master.mariadb.database.azure.com:3306/S06P22A102?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: S06P22A102
-    password: YT8FT0otFm
+  #  datasource:
+  #    url: jdbc:mariadb://stg-yswa-kr-practice-db-master.mariadb.database.azure.com:3306/S06P22A102?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+  #    driver-class-name: org.mariadb.jdbc.Driver
+  #    username: S06P22A102
+  #    password: YT8FT0otFm
 
   # JPA 세팅
   jpa:
     hibernate:
-#      ddl-auto: create # 애플리케이션 실행시점에 테이블 다 지우고 새로 생성
+      #      ddl-auto: create # 애플리케이션 실행시점에 테이블 다 지우고 새로 생성
       ddl-auto: update  # 개발 단계에서는
     #      ddl-auto: create-drop
     #      ddl-auto: validate  # 최종 배포 운영 단계
@@ -32,7 +32,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         default_batch_fetch_size: 1000 #1대다 쿼리 뻥튀기 페이징 문제, 최적화 옵션 (MAX는 거의 1000)
         format_sql: true # 너무 길어지면 읽기 힘들어짐
-#        show_sql: true
+  #        show_sql: true
 
   messages:
     basename: messages

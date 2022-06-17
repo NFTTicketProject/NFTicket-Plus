@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "sale")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Sale {
@@ -23,8 +23,5 @@ public class Sale {
     private String description;
     private Integer startedAt;
     private Integer endedAt;
-
-
-
 
 }

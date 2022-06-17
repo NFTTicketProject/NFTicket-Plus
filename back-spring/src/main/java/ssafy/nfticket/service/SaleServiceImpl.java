@@ -3,10 +3,15 @@ package ssafy.nfticket.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ssafy.nfticket.dto.request.SaleDescriptionRequestDto;
+import ssafy.nfticket.dto.request.SaleShowScheduleIdRequestDto;
+import ssafy.nfticket.dto.sale.SaleDescriptionDto;
 import ssafy.nfticket.dto.sale.SaleDto;
+import ssafy.nfticket.dto.sale.SaleShowScheduleIdDto;
 import ssafy.nfticket.entity.Sale;
 import ssafy.nfticket.repository.SaleRepository;
-import ssafy.nfticket.request.SaleRequestDto;
+import ssafy.nfticket.dto.request.SaleRequestDto;
+import ssafy.nfticket.util.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +26,10 @@ public class SaleServiceImpl implements SaleService {
     @Transactional
     public long register(SaleRequestDto saleRequestDto) {
 
-        Sale sale = Sale.builder().showScheduleId(saleRequestDto.getShowScheduleId())
+        Sale sale = Sale.builder().showScheduleId(saleRequestDto.getShow_schedule_id())
                 .description(saleRequestDto.getDescription())
-                .startedAt(saleRequestDto.getStartedAt())
-                .endedAt(saleRequestDto.getEndedAt())
+                .startedAt(saleRequestDto.getStarted_at())
+                .endedAt(saleRequestDto.getEnded_at())
                 .build();
         Sale saleObj = saleRepository.save(sale);
         saleRepository.flush();
@@ -50,6 +55,59 @@ public class SaleServiceImpl implements SaleService {
 
         return saleDtoList;
 
+    }
+
+    @Override
+    @Transactional
+    public long updateSaleInfo(long saleId, SaleRequestDto saleRequestDto) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        sale.setDescription(saleRequestDto.getDescription());
+        sale.setStartedAt(saleRequestDto.getStarted_at());
+        sale.setEndedAt(saleRequestDto.getEnded_at());
+        CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
+        return sale.getId();
+    }
+
+    @Override
+    public SaleShowScheduleIdDto getShowSchduleId(long saleId) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        SaleShowScheduleIdDto saleShowScheduleIdDto = new SaleShowScheduleIdDto();
+        saleShowScheduleIdDto.setSale_id(sale.getId());
+        saleShowScheduleIdDto.setShow_schedule_id(sale.getShowScheduleId());
+        return saleShowScheduleIdDto;
+    }
+
+    @Override
+    @Transactional
+    public SaleShowScheduleIdDto updateShowScheduleId(long saleId, SaleShowScheduleIdRequestDto saleShowScheduleIdRequestDto) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        sale.setShowScheduleId(saleShowScheduleIdRequestDto.getShow_schedule_id());
+        SaleShowScheduleIdDto saleShowScheduleIdDto = new SaleShowScheduleIdDto();
+        saleShowScheduleIdDto.setSale_id(sale.getId());
+        saleShowScheduleIdDto.setShow_schedule_id(sale.getShowScheduleId());
+        CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
+        return saleShowScheduleIdDto;
+    }
+
+    @Override
+    public SaleDescriptionDto getDescription(long saleId) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        SaleDescriptionDto saleDescriptionDto = new SaleDescriptionDto();
+        saleDescriptionDto.setSaleId(sale.getId());
+        saleDescriptionDto.setDescription(sale.getDescription());
+        return saleDescriptionDto;
+    }
+
+    @Override
+    @Transactional
+    public SaleDescriptionDto updateDescription(long saleId, SaleDescriptionRequestDto saleDescriptionRequestDto) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        sale.setDescription(saleDescriptionRequestDto.getDescription());
+        SaleDescriptionDto saleDescriptionDto = new SaleDescriptionDto();
+        saleDescriptionDto.setSaleId(sale.getId());
+        saleDescriptionDto.setDescription(sale.getDescription());
+        CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
+        return saleDescriptionDto;
     }
 
 }
