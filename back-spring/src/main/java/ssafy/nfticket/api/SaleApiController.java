@@ -4,8 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ssafy.nfticket.dto.request.SaleDescriptionRequestDto;
 import ssafy.nfticket.dto.request.SaleShowScheduleIdRequestDto;
+import ssafy.nfticket.dto.response.SaleDescriptionResponseDto;
 import ssafy.nfticket.dto.response.SaleShowScheduleIdResponseDto;
+import ssafy.nfticket.dto.sale.SaleDescriptionDto;
 import ssafy.nfticket.dto.sale.SaleDto;
 import ssafy.nfticket.dto.request.SaleRequestDto;
 import ssafy.nfticket.dto.response.SaleResponseDto;
@@ -73,7 +76,7 @@ public class SaleApiController {
     }
 
     @GetMapping("/{sale_id}/show-schedule-id")
-    public ResponseEntity updateSale(@PathVariable("sale_id") long saleId) throws Exception {
+    public ResponseEntity getShowScheduleId(@PathVariable("sale_id") long saleId) throws Exception {
 
         try {
             SaleShowScheduleIdDto saleShowScheduleIdDto = saleService.getShowSchduleId(saleId);
@@ -96,6 +99,38 @@ public class SaleApiController {
             SaleShowScheduleIdDto saleShowScheduleIdDto = saleService.updateShowScheduleId(saleId, saleShowScheduleIdRequestDto);
             if(saleShowScheduleIdDto.getSale_id() == saleId)
                 return ResponseEntity.ok().body(saleShowScheduleIdDto.getShow_schedule_id());
+            else
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("잘못된 요청입니다.");
+        }
+    }
+
+    @GetMapping("/{sale_id}/description")
+    public ResponseEntity getDescription(@PathVariable("sale_id") long saleId) throws Exception {
+
+        try {
+            SaleDescriptionDto saleDescriptionDto = saleService.getDescription(saleId);
+            if(saleDescriptionDto.getSaleId() == saleId) {
+                SaleDescriptionResponseDto saleDescriptionResponseDto = new SaleDescriptionResponseDto();
+                saleDescriptionResponseDto.setDescription(saleDescriptionDto.getDescription());
+                return ResponseEntity.ok().body(saleDescriptionResponseDto);
+            }else
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("잘못된 요청입니다.");
+        }
+    }
+
+    @PatchMapping("/{sale_id}/description")
+    public ResponseEntity updateDescription(@PathVariable("sale_id") long saleId,
+                                               @Valid @RequestBody SaleDescriptionRequestDto saleDescriptionRequestDto) throws Exception {
+        try {
+            SaleDescriptionDto saleDescriptionDto = saleService.updateDescription(saleId, saleDescriptionRequestDto);
+            if(saleDescriptionDto.getSaleId() == saleId)
+                return ResponseEntity.ok().body(saleDescriptionDto.getDescription());
             else
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
         } catch (IllegalStateException e) {
