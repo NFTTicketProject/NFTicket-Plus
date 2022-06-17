@@ -1,4 +1,4 @@
-package ssafy.nfticket.request;
+package ssafy.nfticket.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
