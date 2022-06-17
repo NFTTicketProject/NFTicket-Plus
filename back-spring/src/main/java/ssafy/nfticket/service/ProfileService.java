@@ -52,6 +52,7 @@ public class ProfileService {
         return adjective + " " + noun;
     }
 
+    @Transactional
     public Profile updateProfile(Profile profile, SimpleProfileInfoDto updatedProfileInfo) {
         profile.setNickname(updatedProfileInfo.getNickname());
         profile.setDescription(updatedProfileInfo.getDescription());
@@ -62,18 +63,21 @@ public class ProfileService {
         return profile;
     }
 
+    @Transactional
     public Profile updateNickname(Profile profile, String nickname) {
         profile.setNickname(nickname);
         profileRepository.save(profile);
         return profile;
     }
 
+    @Transactional
     public Profile updateDescription(Profile profile, String description) {
         profile.setDescription(description);
         profileRepository.save(profile);
         return profile;
     }
 
+    @Transactional
     public Profile updateImageUri(Profile profile, String imageUri) {
         profile.setImageUri(imageUri);
         profileRepository.save(profile);
