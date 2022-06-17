@@ -8,6 +8,7 @@ import ssafy.nfticket.dto.request.*;
 import ssafy.nfticket.dto.response.SaleDescriptionResponseDto;
 import ssafy.nfticket.dto.response.SaleShowScheduleIdResponseDto;
 import ssafy.nfticket.dto.sale.SaleDescriptionDto;
+import ssafy.nfticket.dto.profile.SimpleProfileDescDto;
 import ssafy.nfticket.dto.sale.SaleDto;
 import ssafy.nfticket.dto.response.SaleResponseDto;
 import ssafy.nfticket.dto.sale.SaleShowScheduleIdDto;

@@ -1,12 +1,14 @@
 package ssafy.nfticket.dto.profile;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
 @Data
+@NoArgsConstructor
 public class SimpleProfileDescDto {
-    @NotBlank(message = "유효하지 않은 소개입니다.")
+    @NotBlank()
     private String description;
 
     public SimpleProfileDescDto(String description) {

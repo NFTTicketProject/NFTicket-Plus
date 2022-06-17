@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 public class SimpleProfileNicknameDto {
-    @NotBlank(message = "유효하지 않은 닉네임입니다.")
+    @NotBlank()
     private String nickname;
 
     public SimpleProfileNicknameDto(String nickname) {
