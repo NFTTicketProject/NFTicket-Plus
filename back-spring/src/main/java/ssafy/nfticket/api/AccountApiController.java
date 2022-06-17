@@ -51,8 +51,8 @@ public class AccountApiController {
     }
 
     @PatchMapping("/{walletAddress}/nickname")
-    public ResponseEntity updateNickname(@Valid @PathVariable("walletAddress") String walletAddress,
-                                         @RequestBody SimpleProfileNicknameDto updatedProfileNickname) {
+    public ResponseEntity updateNickname(@PathVariable("walletAddress") String walletAddress,
+                                         @Valid @RequestBody SimpleProfileNicknameDto updatedProfileNickname) {
         Profile profile;
         try {
             profile = profileService.getProfile(walletAddress);
@@ -65,7 +65,7 @@ public class AccountApiController {
 
     @PatchMapping("/{walletAddress}/description")
     public ResponseEntity updateDescription(@PathVariable("walletAddress") String walletAddress,
-                                            @RequestBody SimpleProfileDescDto updatedProfileDescDto) {
+                                            @Valid @RequestBody SimpleProfileDescDto updatedProfileDescDto) {
         Profile profile;
         try {
             profile = profileService.getProfile(walletAddress);
@@ -78,7 +78,7 @@ public class AccountApiController {
 
     @PatchMapping("/{walletAddress}/image-uri")
     public ResponseEntity updateImageUri(@PathVariable("walletAddress") String walletAddress,
-                                         @RequestBody SimpleProfileImageUriDto updatedProfileImageDto) {
+                                         @Valid @RequestBody SimpleProfileImageUriDto updatedProfileImageDto) {
         Profile profile;
         try {
             profile = profileService.getProfile(walletAddress);
