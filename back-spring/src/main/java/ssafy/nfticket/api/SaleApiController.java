@@ -5,13 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ssafy.nfticket.dto.request.*;
-import ssafy.nfticket.dto.response.SaleDescriptionResponseDto;
-import ssafy.nfticket.dto.response.SaleShowScheduleIdResponseDto;
-import ssafy.nfticket.dto.sale.SaleDescriptionDto;
+import ssafy.nfticket.dto.response.*;
+import ssafy.nfticket.dto.sale.*;
 import ssafy.nfticket.dto.profile.SimpleProfileDescDto;
-import ssafy.nfticket.dto.sale.SaleDto;
-import ssafy.nfticket.dto.response.SaleResponseDto;
-import ssafy.nfticket.dto.sale.SaleShowScheduleIdDto;
 import ssafy.nfticket.service.SaleService;
 
 import javax.validation.Valid;
@@ -140,24 +136,68 @@ public class SaleApiController {
 
     @GetMapping("/{sale_id}/started-at")
     public ResponseEntity getStartedAt(@PathVariable("sale_id") long saleId) throws Exception {
-        return null;
+        try {
+            SaleStartedAtDto saleStartedAtDto = saleService.getStartedAt(saleId);
+            if (saleStartedAtDto.getSaleId() == saleId) {
+                SaleStartedAtResponseDto saleStartedAtResponseDto = new SaleStartedAtResponseDto();
+                saleStartedAtResponseDto.setStarted_at(saleStartedAtDto.getStartedAt());
+                return ResponseEntity.ok().body(saleStartedAtResponseDto);
+            } else
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("잘못된 요청입니다.");
+        }
     }
 
     @PatchMapping("/{sale_id}/started-at")
     public ResponseEntity updateStartedAt(@PathVariable("sale_id") long saleId,
-                                          @Valid @RequestBody SaleStartedAtRequestDto saleDescriptionRequestDto) throws Exception {
-        return null;
+                                          @Valid @RequestBody SaleStartedAtRequestDto saleStartedAtRequestDto) throws Exception {
+
+        try {
+            SaleStartedAtDto saleStartedAtDto = saleService.updateStartedAt(saleId, saleStartedAtRequestDto);
+            if (saleStartedAtDto.getSaleId() == saleId)
+                return ResponseEntity.ok().body(saleStartedAtDto.getStartedAt());
+            else
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("잘못된 요청입니다.");
+        }
+
     }
 
     @GetMapping("/{sale_id}/ended-at")
     public ResponseEntity getEndedAt(@PathVariable("sale_id") long saleId) throws Exception {
-        return null;
+        try {
+            SaleEndedAtDto saleEndedAtDto = saleService.getEndedAt(saleId);
+            if (saleEndedAtDto.getSaleId() == saleId) {
+                SaleEndedAtResponseDto saleEndedAtResponseDto = new SaleEndedAtResponseDto();
+                saleEndedAtResponseDto.setEnded_at(saleEndedAtDto.getEndedAt());
+                return ResponseEntity.ok().body(saleEndedAtResponseDto);
+            } else
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("잘못된 요청입니다.");
+        }
     }
 
     @PatchMapping("/{sale_id}/ended-at")
     public ResponseEntity updateEndedAt(@PathVariable("sale_id") long saleId,
-                                        @Valid @RequestBody SaleEndedAtRequestDto saleDescriptionRequestDto) throws Exception {
-        return null;
+                                        @Valid @RequestBody SaleEndedAtRequestDto saleEndedAtRequestDto) throws Exception {
+
+        try {
+            SaleEndedAtDto saleEndedAtDto = saleService.updateEndedAt(saleId, saleEndedAtRequestDto);
+            if (saleEndedAtDto.getSaleId() == saleId)
+                return ResponseEntity.ok().body(saleEndedAtDto.getEndedAt());
+            else
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("티켓 판매 정보 없음.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("잘못된 요청입니다.");
+        }
+
     }
 
 
