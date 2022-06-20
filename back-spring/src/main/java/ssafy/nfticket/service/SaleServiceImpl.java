@@ -3,14 +3,10 @@ package ssafy.nfticket.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ssafy.nfticket.dto.request.SaleDescriptionRequestDto;
-import ssafy.nfticket.dto.request.SaleShowScheduleIdRequestDto;
-import ssafy.nfticket.dto.sale.SaleDescriptionDto;
-import ssafy.nfticket.dto.sale.SaleDto;
-import ssafy.nfticket.dto.sale.SaleShowScheduleIdDto;
+import ssafy.nfticket.dto.request.*;
+import ssafy.nfticket.dto.sale.*;
 import ssafy.nfticket.entity.Sale;
 import ssafy.nfticket.repository.SaleRepository;
-import ssafy.nfticket.dto.request.SaleRequestDto;
 import ssafy.nfticket.util.CommonUtils;
 
 import java.util.ArrayList;
@@ -108,6 +104,48 @@ public class SaleServiceImpl implements SaleService {
         saleDescriptionDto.setDescription(sale.getDescription());
         CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
         return saleDescriptionDto;
+    }
+
+    @Override
+    public SaleStartedAtDto getStartedAt(long saleId) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        SaleStartedAtDto saleStartedAtDto = new SaleStartedAtDto();
+        saleStartedAtDto.setSaleId(sale.getId());
+        saleStartedAtDto.setStartedAt(sale.getStartedAt());
+        return saleStartedAtDto;
+    }
+
+    @Override
+    public SaleEndedAtDto getEndedAt(long saleId) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        SaleEndedAtDto saleEndedAtDto = new SaleEndedAtDto();
+        saleEndedAtDto.setSaleId(sale.getId());
+        saleEndedAtDto.setEndedAt(sale.getEndedAt());
+        return saleEndedAtDto;
+    }
+
+    @Override
+    @Transactional
+    public SaleStartedAtDto updateStartedAt(long saleId, SaleStartedAtRequestDto saleStartedAtRequestDto) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        sale.setStartedAt(saleStartedAtRequestDto.getStarted_at());
+        SaleStartedAtDto saleStartedAtDto = new SaleStartedAtDto();
+        saleStartedAtDto.setSaleId(sale.getId());
+        saleStartedAtDto.setStartedAt(sale.getStartedAt());
+        CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
+        return saleStartedAtDto;
+    }
+
+    @Override
+    @Transactional
+    public SaleEndedAtDto updateEndedAt(long saleId, SaleEndedAtRequestDto saleEndedAtRequestDto) {
+        Sale sale = saleRepository.findById(saleId).orElseGet(Sale::new);
+        sale.setEndedAt(saleEndedAtRequestDto.getEnded_at());
+        SaleEndedAtDto saleEndedAtDto = new SaleEndedAtDto();
+        saleEndedAtDto.setSaleId(sale.getId());
+        saleEndedAtDto.setEndedAt(sale.getEndedAt());
+        CommonUtils.saveIfNullId(sale.getId(), saleRepository, sale);
+        return saleEndedAtDto;
     }
 
 }
