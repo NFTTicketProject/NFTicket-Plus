@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "address")
 @Getter @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor//(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Address {
 
@@ -19,7 +19,7 @@ public class Address {
 
     private String address;
     private Integer showScheduleId;
-    private Integer showId;
+    private Long showId;
 
 
 }
