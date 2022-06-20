@@ -9,15 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import ssafy.nfticket.dto.params.ShowSearchCondition;
 import ssafy.nfticket.dto.request.ShowRequestDto;
 import ssafy.nfticket.dto.response.ShowResponseDto;
-import ssafy.nfticket.dto.show.SimpleShowIdDto;
+import ssafy.nfticket.dto.show.*;
 import ssafy.nfticket.entity.Show;
 import ssafy.nfticket.service.ShowService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/show")
 public class ShowApiController {
 
     private final ShowService showService;
@@ -27,8 +29,8 @@ public class ShowApiController {
      * @param showRequestDto
      * @return
      */
-    @PostMapping("/show")
-    public ResponseEntity addShow(@RequestBody ShowRequestDto showRequestDto) {
+    @PostMapping()
+    public ResponseEntity<SimpleShowIdDto> addShow(@RequestBody ShowRequestDto showRequestDto) {
 
         Show newShow = showService.addShow(showRequestDto);
 
@@ -39,8 +41,8 @@ public class ShowApiController {
      * 모든 공연 정보 반환 (함수 및 API 이름 수정 여지 있음)
      * @return
      */
-    @GetMapping("/show")
-    public ResponseEntity getAllShow() {
+    @GetMapping()
+    public ResponseEntity<List<ShowResponseDto>> getAllShow() {
 
         List<Show> show = showService.getAllShow();
         List<ShowResponseDto> result = show.stream().map(x -> new ShowResponseDto(x)).collect(Collectors.toList());
@@ -48,8 +50,8 @@ public class ShowApiController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping("/show/search")
-    public ResponseEntity searchShow(@RequestParam(value = "category_name", required = false) String category_name,
+    @GetMapping("/search")
+    public ResponseEntity<List<Show>> searchShow(@RequestParam(value = "category_name", required = false) String category_name,
                                      @RequestParam(value = "name", required = false) String name,
                                      @RequestParam(value = "description", required = false) String description,
                                      @RequestParam(value = "min_running_time", required = false) Integer min_running_time,
@@ -75,6 +77,185 @@ public class ShowApiController {
         return ResponseEntity.ok().body(showSearch);
     }
 
+    /*
+    * 공연 카데고리 목록 반환
+    * */
+    @GetMapping("/categories")
+    public ResponseEntity<List<String>> getCategoryNames() {
+        return ResponseEntity.ok().body(showService.getCategoryNames());
+    }
 
+    /*
+    * 공연 정보 반환
+    * */
+    @GetMapping("/{showId}")
+    public ResponseEntity<ShowResponseDto> getShow(@PathVariable("showId")Long showId) {
+        return ResponseEntity.ok().body(new ShowResponseDto(showService.getShow(showId)));
+    }
+
+    /*
+    * 공연 정보 수정
+    * */
+    @PatchMapping("/{showId}")
+    public ResponseEntity<String> updateShow(@PathVariable("showId") Long showId,
+                                     @Valid @RequestBody ShowRequestDto showRequestDto) {
+        return ResponseEntity.ok().body(showService.updateShow(showId, showRequestDto));
+    }
+
+
+    /*
+    * 공연 카데고리 명 반환
+    * */
+    @GetMapping("/{showId}/category-name")
+    public ResponseEntity<SimpleShowCategoryDto> getShowCategoryName(@PathVariable("showId")Long showId){
+        return ResponseEntity.ok().body(new SimpleShowCategoryDto(showService.getCategoryName(showId)));
+    }
+
+    /*
+    * 공연 카데고리 명 수정
+    * */
+    @PatchMapping("/{showId}/category-name")
+    public ResponseEntity<String> updateShowCategoryName(@PathVariable("showId") Long showId,
+                                                         @Valid @RequestBody SimpleShowCategoryDto simpleShowCategoryDto) {
+        return ResponseEntity.ok().body(showService.updateCategoryName(showId, simpleShowCategoryDto));
+    }
+
+
+    /*
+    * 공연 명 반환
+    * */
+    @GetMapping("/{showId}/name")
+    public ResponseEntity<SimpleShowNameDto> getShowName(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowNameDto(showService.getName(showId)));
+    }
+
+    /*
+    * 공연 명 수정
+    * */
+    @PatchMapping("/{showId}/name")
+    public ResponseEntity<String> updateShowName(@PathVariable("showId") Long showId,
+                                                 @Valid @RequestBody SimpleShowNameDto simpleShowNameDto) {
+        return ResponseEntity.ok().body(showService.updateName(showId, simpleShowNameDto));
+    }
+
+    /*
+    * 공연 설명 반환
+    * */
+    @GetMapping("/{showId}/description")
+    public ResponseEntity<SimpleShowDescDto> getShowDescription(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowDescDto(showService.getDescription(showId)));
+    }
+
+    /*
+    * 공연 설명 수정
+    * */
+    @PatchMapping("/{showId}/description")
+    public ResponseEntity<String> updateShowDescription(@PathVariable("showId") Long showId,
+                                                        @Valid @RequestBody SimpleShowDescDto simpleShowDescDto) {
+        return ResponseEntity.ok().body(showService.updateDescription(showId, simpleShowDescDto));
+    }
+
+    /*
+    * 공연 길이 반환
+    * */
+    @GetMapping("/{showId}/running-time")
+    public ResponseEntity<SimpleShowRunTimeDto> getShowRunningTime(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowRunTimeDto(showService.getRunningTime(showId)));
+    }
+
+    /*
+    * 공연 길이 수정
+    * */
+    @PatchMapping("/{showId}/running-time")
+    public ResponseEntity<String> updateShowRunningTime(@PathVariable("showId") Long showId,
+                                                        @Valid @RequestBody SimpleShowRunTimeDto simpleShowRunTimeDto) {
+        return ResponseEntity.ok().body(showService.updateRunningTime(showId, simpleShowRunTimeDto));
+    }
+
+    /*
+    * 공연 연령 제한 반환
+    * */
+    @GetMapping("/{showId}/age-limit")
+    public ResponseEntity<SimpleShowAgeLimitDto> getShowAgeLimit(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowAgeLimitDto(showService.getAgeLimit(showId)));
+    }
+
+    /*
+    * 공연 연령 제한 수정
+    * */
+    @PatchMapping("/{showId}/age-limit")
+    public ResponseEntity<String> updateShowAgeLimit(@PathVariable("showId") Long showId,
+                                                     @Valid @RequestBody SimpleShowAgeLimitDto simpleShowAgeLimitDto) {
+        return ResponseEntity.ok().body(showService.updateAgeLimit(showId, simpleShowAgeLimitDto));
+    }
+
+    /*
+    * 공연 포스터 URI 반환
+    * */
+    @GetMapping("/{showId}/poster-uri")
+    public ResponseEntity<SimpleShowPosterUriDto> getShowPosterUri(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowPosterUriDto(showService.getPosterUri(showId)));
+    }
+
+    /*
+    * 공연 포스터 URI 수정
+    * */
+    @PatchMapping("/{showId}/poster-uri")
+    public ResponseEntity<String> updateShowPosterUri(@PathVariable("showId") Long showId,
+                                                      @Valid @RequestBody SimpleShowPosterUriDto simpleShowPosterUriDto) {
+        return ResponseEntity.ok().body(showService.updatePosterUri(showId, simpleShowPosterUriDto));
+    }
+
+    /*
+    * 공연 예고편 URI 반환
+    * */
+    @GetMapping("/{showId}/video-uri")
+    public ResponseEntity<SimpleShowVideoUriDto> getShowVideoUri(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowVideoUriDto(showService.getVideoUri(showId)));
+    }
+
+    /*
+    * 공연 예고편 URI 수정
+    * */
+    @PatchMapping("/{showId}/video-uri")
+    public ResponseEntity<String> updateShowVideoUri(@PathVariable("showId") Long showId,
+                                                     @Valid @RequestBody SimpleShowVideoUriDto simpleShowVideoUriDto){
+        return ResponseEntity.ok().body(showService.updateVideoUri(showId, simpleShowVideoUriDto));
+    }
+
+
+    /*
+    * 공연 기본 티켓 이미지 URI 반환
+    * */
+    @GetMapping("/{showId}/default-ticket-image-uri")
+    public ResponseEntity<SimpleShowDefaultTicketImgDto> getShowDefaultTicketImageUri(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowDefaultTicketImgDto(showService.getDefaultTicketImageUri(showId)));
+    }
+
+    /*
+    * 공연 기본 티켓 이미지 URI 수정
+    * */
+    @PatchMapping("/{showId}/default-ticket-image-uri")
+    public ResponseEntity<String> updateShowDefaultTicketImageUri(@PathVariable("showId") Long showId,
+                                                                  @Valid @RequestBody SimpleShowDefaultTicketImgDto simpleShowDefaultTicketImgDto) {
+        return ResponseEntity.ok().body(showService.updateDefaultTicketImageUri(showId, simpleShowDefaultTicketImgDto));
+    }
+
+    /*
+    * 공연 스케줄 CA 목록 반환 -> Address
+    * */
+    @GetMapping("/{showId}/show-schedule")
+    public ResponseEntity<List<String>> getShowSchedule(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(showService.getSchedule(showId));
+    }
+
+    /*
+    * 공연 스케줄 정보 추가 -> Address에 추가
+    * */
+    @PutMapping("/{showId}/show-schedule")
+    public ResponseEntity<String> updateShowSchedule(@PathVariable("showId") Long showId,
+                                                     @Valid @RequestBody SimpleShowAddressDto simpleShowAddressDto) {
+        return ResponseEntity.ok().body(showService.addShowScheduleAddress(showId, simpleShowAddressDto));
+    }
 
 }
