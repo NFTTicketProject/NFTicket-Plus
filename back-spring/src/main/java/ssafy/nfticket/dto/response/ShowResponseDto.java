@@ -14,6 +14,7 @@ public class ShowResponseDto {
     private String poster_uri;
     private String video_uri;
     private String default_ticket_image_uri;
+    private Integer show_schedule_id;
 
     public ShowResponseDto(Show show) {
         this.category_name = show.getCategoryName();
@@ -24,5 +25,6 @@ public class ShowResponseDto {
         this.poster_uri = show.getPosterUri();
         this.video_uri = show.getVideoUri();
         this.default_ticket_image_uri = show.getDefaultTicketImageUri();
+        this.show_schedule_id = show.getShowScheduleId();
     }
 }

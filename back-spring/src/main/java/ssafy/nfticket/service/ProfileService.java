@@ -3,15 +3,11 @@ package ssafy.nfticket.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ssafy.nfticket.common.util.RandomNickname;
 import ssafy.nfticket.dto.profile.SimpleProfileInfoDto;
-import ssafy.nfticket.entity.RandomAdjective;
-import ssafy.nfticket.entity.RandomNoun;
 import ssafy.nfticket.repository.ProfileRepository;
 import ssafy.nfticket.entity.Profile;
-import ssafy.nfticket.repository.RandomAdjectiveRepository;
-import ssafy.nfticket.repository.RandomNounRepository;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,13 +15,12 @@ import java.util.List;
 public class ProfileService {
 
     private final ProfileRepository profileRepository;
-    private final RandomAdjectiveRepository randomAdjectiveRepository;
-    private final RandomNounRepository randomNounRepository;
 
     @Transactional
     public Profile join(String walletId) {
         Profile newProfile = new Profile();
-        newProfile.setNickname(getRandomNickname());
+        RandomNickname randomNickname = new RandomNickname();
+        newProfile.setNickname(randomNickname.makeRandomNickname());
         newProfile.setDescription("자기 소개를 입력해주세요!");
         newProfile.setImageUri("none");
         newProfile.setGallery("galleryS");
@@ -42,14 +37,6 @@ public class ProfileService {
         } else {
             throw new IllegalStateException("프로필 없음");
         }
-    }
-
-    public String getRandomNickname() {
-        List<RandomAdjective> randomAdjectiveList = randomAdjectiveRepository.findAll();
-        List<RandomNoun> randomNounList = randomNounRepository.findAll();
-        String adjective = randomAdjectiveList.get((int) (Math.random() * randomAdjectiveList.size())).getAdjective();
-        String noun = randomNounList.get((int) (Math.random() * randomNounList.size())).getNoun();
-        return adjective + " " + noun;
     }
 
     @Transactional

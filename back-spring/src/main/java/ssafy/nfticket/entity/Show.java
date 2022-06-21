@@ -27,5 +27,6 @@ public class Show {
     private String videoUri;
     private String defaultTicketImageUri;
     private String stageSeller;
-
+    private String address;
+    private Integer showScheduleId;
 }

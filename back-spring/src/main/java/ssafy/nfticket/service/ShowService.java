@@ -9,12 +9,9 @@ import ssafy.nfticket.common.error.ErrorCode;
 import ssafy.nfticket.dto.params.ShowSearchCondition;
 import ssafy.nfticket.dto.request.ShowRequestDto;
 import ssafy.nfticket.dto.show.*;
-import ssafy.nfticket.entity.Address;
 import ssafy.nfticket.entity.Show;
 import ssafy.nfticket.repository.AddressRepository;
 import ssafy.nfticket.repository.ShowRepository;
-import ssafy.nfticket.repository.ShowRepositoryCustom;
-import ssafy.nfticket.repository.ShowRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +36,8 @@ public class ShowService {
         show.setPosterUri(showRequestDto.getPoster_uri());
         show.setVideoUri(showRequestDto.getVideo_uri());
         show.setDefaultTicketImageUri(showRequestDto.getDefault_ticket_image_uri());
+        show.setAddress(null);
+        show.setShowScheduleId(null);
 
         showRepository.save(show);
 
@@ -202,23 +201,18 @@ public class ShowService {
         return "성공";
     }
 
-    public List<String> getSchedule(Long showId) {
-        List<Address> addressList = addressRepository.findAddressByShowId(showId);
-        List<String> addressStringList = new ArrayList<>();
+    public String getSchedule(Long showId) {
+        Show show = getShow(showId);
 
-        for (Address address:addressList) {
-            addressStringList.add(address.getAddress());
-        }
-        return addressStringList;
+        return show.getAddress();
     }
 
     @Transactional
-    public String addShowScheduleAddress(Long showId, SimpleShowAddressDto simpleShowAddressDto) {
-        Address address = new Address();
-        address.setAddress(simpleShowAddressDto.getAddress());
-        address.setShowScheduleId(simpleShowAddressDto.getShowScheduleId());
-        address.setShowId(showId);
-        addressRepository.save(address);
+    public String addShowScheduleAddress(Long showId, SimpleShowAddressScheduleDto simpleShowAddressScheduleDto) {
+        Show show = getShow(showId);
+        show.setAddress(simpleShowAddressScheduleDto.getAddress());
+        show.setShowScheduleId(simpleShowAddressScheduleDto.getShowScheduleId());
+        showRepository.save(show);
         return "성공";
     }
 
