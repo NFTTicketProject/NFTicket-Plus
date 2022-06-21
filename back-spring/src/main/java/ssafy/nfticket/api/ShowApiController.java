@@ -51,7 +51,7 @@ public class ShowApiController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Show>> searchShow(@RequestParam(value = "category_name", required = false) String category_name,
+    public ResponseEntity<List<ShowResponseDto>> searchShow(@RequestParam(value = "category_name", required = false) String category_name,
                                      @RequestParam(value = "name", required = false) String name,
                                      @RequestParam(value = "description", required = false) String description,
                                      @RequestParam(value = "min_running_time", required = false) Integer min_running_time,
@@ -72,9 +72,10 @@ public class ShowApiController {
         showSearchCondition.setMax_age_limit(max_age_limit);
 
         List<Show> showSearch = showService.searchShow(showSearchCondition, pageable);
+        List<ShowResponseDto> result = showSearch.stream().map(ShowResponseDto::new).collect(Collectors.toList());
 
 
-        return ResponseEntity.ok().body(showSearch);
+        return ResponseEntity.ok().body(result);
     }
 
     /*
@@ -245,8 +246,8 @@ public class ShowApiController {
     * 공연 스케줄 CA 목록 반환 -> Address
     * */
     @GetMapping("/{showId}/show-schedule")
-    public ResponseEntity<List<String>> getShowSchedule(@PathVariable("showId") Long showId) {
-        return ResponseEntity.ok().body(showService.getSchedule(showId));
+    public ResponseEntity<SimpleShowAddressDto> getShowSchedule(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowAddressDto(showService.getSchedule(showId)));
     }
 
     /*
@@ -254,8 +255,8 @@ public class ShowApiController {
     * */
     @PutMapping("/{showId}/show-schedule")
     public ResponseEntity<String> updateShowSchedule(@PathVariable("showId") Long showId,
-                                                     @Valid @RequestBody SimpleShowAddressDto simpleShowAddressDto) {
-        return ResponseEntity.ok().body(showService.addShowScheduleAddress(showId, simpleShowAddressDto));
+                                                     @Valid @RequestBody SimpleShowAddressScheduleDto simpleShowAddressScheduleDto) {
+        return ResponseEntity.ok().body(showService.addShowScheduleAddress(showId, simpleShowAddressScheduleDto));
     }
 
 }
