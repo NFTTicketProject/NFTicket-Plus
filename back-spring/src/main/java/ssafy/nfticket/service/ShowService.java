@@ -22,7 +22,6 @@ import java.util.List;
 public class ShowService {
 
     private final ShowRepository showRepository;
-    private final AddressRepository addressRepository;
 
     @Transactional
     public Show addShow(ShowRequestDto showRequestDto) {
@@ -67,8 +66,7 @@ public class ShowService {
 
     @Transactional
     public String updateShow(Long showId, ShowRequestDto showRequestDto) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setCategoryName(showRequestDto.getCategory_name());
         show.setName(showRequestDto.getName());
         show.setDescription(showRequestDto.getDescription());
@@ -82,120 +80,104 @@ public class ShowService {
     }
 
     public String getCategoryName(Long showId) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         return show.getCategoryName();
     }
 
     @Transactional
     public String updateCategoryName(Long showId, SimpleShowCategoryDto simpleShowCategoryDto) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setCategoryName(simpleShowCategoryDto.getCategoryName());
         showRepository.save(show);
         return "성공";
     }
 
     public String getName(Long showId) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         return show.getName();
     }
 
     @Transactional
     public String updateName(Long showId, SimpleShowNameDto simpleShowNameDto) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setName(simpleShowNameDto.getName());
         showRepository.save(show);
         return "성공";
     }
 
     public String getDescription(Long showId) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         return show.getDescription();
     }
 
     @Transactional
     public String updateDescription(Long showId, SimpleShowDescDto simpleShowDescDto) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setDescription(simpleShowDescDto.getDescription());
         showRepository.save(show);
         return "성공";
     }
 
     public Integer getRunningTime(Long showId) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         return show.getRunningTime();
     }
 
     @Transactional
     public String updateRunningTime(Long showId, SimpleShowRunTimeDto simpleShowRunTimeDto) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setRunningTime(simpleShowRunTimeDto.getRunningTime());
         showRepository.save(show);
         return "성공";
     }
 
     public Integer getAgeLimit(Long showId) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         return show.getAgeLimit();
     }
 
     @Transactional
     public String updateAgeLimit(Long showId, SimpleShowAgeLimitDto simpleShowAgeLimitDto) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setAgeLimit(simpleShowAgeLimitDto.getAgeLimit());
         showRepository.save(show);
         return "성공";
     }
 
     public String getPosterUri(Long showId) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         return show.getPosterUri();
     }
 
     @Transactional
     public String updatePosterUri(Long showId, SimpleShowPosterUriDto simpleShowPosterUriDto) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setPosterUri(simpleShowPosterUriDto.getPosterUri());
         showRepository.save(show);
         return "성공";
     }
 
     public String getVideoUri(Long showId) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         return show.getVideoUri();
     }
 
     @Transactional
     public String updateVideoUri(Long showId, SimpleShowVideoUriDto simpleShowVideoUriDto){
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setVideoUri(simpleShowVideoUriDto.getVideoUri());
         showRepository.save(show);
         return "성공";
     }
 
     public String getDefaultTicketImageUri(Long showId) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         return show.getDefaultTicketImageUri();
     }
 
     @Transactional
     public String updateDefaultTicketImageUri(Long showId, SimpleShowDefaultTicketImgDto simpleShowDefaultTicketImgDto) {
-        Show show = showRepository.findById(showId).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Show show = getShow(showId);
         show.setDefaultTicketImageUri(simpleShowDefaultTicketImgDto.getDefaultTicketImageUri());
         showRepository.save(show);
         return "성공";
