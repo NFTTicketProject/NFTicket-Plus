@@ -42,7 +42,7 @@ public class ProfileApiController {
      * @param walletAddress
      * @return
      */
-    @GetMapping("/{walletAddress}/nickname")
+    @GetMapping("/nickname/{walletAddress}")
     public ResponseEntity getProfileNickname(@PathVariable("walletAddress") String walletAddress) {
         try {
             Profile newProfile = profileService.getProfile(walletAddress);
