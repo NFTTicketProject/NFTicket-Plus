@@ -1,0 +1,19 @@
+package ssafy.nfticket.dto.profile;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
+
+@Data
+@NoArgsConstructor
+public class SimpleProfileImageUriDto {
+    @NotBlank()
+    @JsonProperty(value="image_uri")
+    private String imageUri;
+
+    public SimpleProfileImageUriDto(String imageUri) {
+        this.imageUri = imageUri;
+    }
+}
