@@ -243,11 +243,12 @@ public class ShowApiController {
     }
 
     /*
-    * 공연 스케줄 CA 목록 반환 -> Address
+    * 공연 스케줄 CA 목록 반환 -> Address + Id
     * */
     @GetMapping("/{showId}/show-schedule")
-    public ResponseEntity<SimpleShowAddressDto> getShowSchedule(@PathVariable("showId") Long showId) {
-        return ResponseEntity.ok().body(new SimpleShowAddressDto(showService.getSchedule(showId)));
+    public ResponseEntity<SimpleShowAddressScheduleDto> getShowSchedule(@PathVariable("showId") Long showId) {
+        Show show = showService.getShow(showId);
+        return ResponseEntity.ok().body(new SimpleShowAddressScheduleDto(show.getShowScheduleId(), show.getAddress()));
     }
 
     /*

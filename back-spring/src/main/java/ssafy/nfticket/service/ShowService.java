@@ -183,12 +183,6 @@ public class ShowService {
         return "성공";
     }
 
-    public String getSchedule(Long showId) {
-        Show show = getShow(showId);
-
-        return show.getAddress();
-    }
-
     @Transactional
     public String addShowScheduleAddress(Long showId, SimpleShowAddressScheduleDto simpleShowAddressScheduleDto) {
         Show show = getShow(showId);
