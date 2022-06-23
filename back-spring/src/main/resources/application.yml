@@ -10,7 +10,7 @@ spring:
 #    username: root
 #    password: 1234
 
-#  # 마리아 DB(배포)
+  # 마리아 DB(배포)
   datasource:
     url: jdbc:mariadb://stg-yswa-kr-practice-db-master.mariadb.database.azure.com:3306/S06P22A102?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     driver-class-name: org.mariadb.jdbc.Driver
