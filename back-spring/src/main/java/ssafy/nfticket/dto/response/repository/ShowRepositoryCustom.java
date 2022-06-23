@@ -1,4 +1,4 @@
-package ssafy.nfticket.repository;
+package ssafy.nfticket.dto.response.repository;
 
 import org.springframework.data.domain.Pageable;
 import ssafy.nfticket.dto.params.ShowSearchCondition;

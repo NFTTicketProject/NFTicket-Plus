@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ssafy.nfticket.common.util.RandomNickname;
 import ssafy.nfticket.dto.profile.SimpleProfileInfoDto;
-import ssafy.nfticket.repository.ProfileRepository;
+import ssafy.nfticket.dto.response.repository.ProfileRepository;
 import ssafy.nfticket.entity.Profile;
 
 

@@ -1,4 +1,4 @@
-package ssafy.nfticket.repository;
+package ssafy.nfticket.dto.response.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ssafy.nfticket.entity.Sale;

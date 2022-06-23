@@ -9,7 +9,7 @@ import ssafy.nfticket.dto.simple.SimpleStaffDto;
 import ssafy.nfticket.dto.staff.SimpleStaffImgDto;
 import ssafy.nfticket.dto.staff.SimpleStaffNameDto;
 import ssafy.nfticket.entity.Staff;
-import ssafy.nfticket.repository.StaffRepository;
+import ssafy.nfticket.dto.response.repository.StaffRepository;
 
 import java.util.ArrayList;
 import java.util.List;
