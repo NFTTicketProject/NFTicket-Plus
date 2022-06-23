@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ssafy.nfticket.dto.request.*;
 import ssafy.nfticket.dto.sale.*;
 import ssafy.nfticket.entity.Sale;
-import ssafy.nfticket.repository.SaleRepository;
+import ssafy.nfticket.dto.response.repository.SaleRepository;
 import ssafy.nfticket.util.CommonUtils;
 
 import java.util.ArrayList;

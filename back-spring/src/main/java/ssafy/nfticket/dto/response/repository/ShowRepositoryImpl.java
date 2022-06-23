@@ -1,4 +1,4 @@
-package ssafy.nfticket.repository;
+package ssafy.nfticket.dto.response.repository;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 import ssafy.nfticket.dto.params.ShowSearchCondition;
-import ssafy.nfticket.entity.QShow;
 import ssafy.nfticket.entity.Show;
 
 import java.util.List;

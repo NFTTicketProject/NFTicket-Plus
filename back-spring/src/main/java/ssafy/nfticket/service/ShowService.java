@@ -10,8 +10,7 @@ import ssafy.nfticket.dto.params.ShowSearchCondition;
 import ssafy.nfticket.dto.request.ShowRequestDto;
 import ssafy.nfticket.dto.show.*;
 import ssafy.nfticket.entity.Show;
-import ssafy.nfticket.repository.AddressRepository;
-import ssafy.nfticket.repository.ShowRepository;
+import ssafy.nfticket.dto.response.repository.ShowRepository;
 
 import java.util.ArrayList;
 import java.util.List;
