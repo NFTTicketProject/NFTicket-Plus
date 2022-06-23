@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "block_hash")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor//(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class BlockHash {
     @Id @GeneratedValue
