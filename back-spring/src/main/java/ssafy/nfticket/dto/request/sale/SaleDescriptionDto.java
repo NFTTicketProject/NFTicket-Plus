@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class SaleDescriptionDto {
-    long saleId;
+    Long saleId;
     String description;
 
 }

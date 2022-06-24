@@ -11,14 +11,13 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class SaleDto {
 
-    int showScheduleId;
+    Integer showScheduleId;
 
     String description;
 
-    int startedAt;
+    Integer startedAt;
 
-    @Max(Integer.MAX_VALUE)
-    int endedAt;
+    Integer endedAt;
 
 }
 

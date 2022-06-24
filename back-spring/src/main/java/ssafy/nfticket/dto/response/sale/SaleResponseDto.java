@@ -1,12 +1,12 @@
 package ssafy.nfticket.dto.response.sale;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class SaleResponseDto {
-    long saleId;
+    Long saleId;
     String message;
 }
