@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ssafy.nfticket.common.error.CustomException;
 import ssafy.nfticket.common.error.ErrorCode;
-import ssafy.nfticket.dto.params.ShowSearchCondition;
-import ssafy.nfticket.dto.request.ShowRequestDto;
-import ssafy.nfticket.dto.show.*;
-import ssafy.nfticket.entity.Show;
-import ssafy.nfticket.dto.response.repository.ShowRepository;
+import ssafy.nfticket.dto.request.show.ShowSearchCondition;
+import ssafy.nfticket.dto.request.show.ShowRequestDto;
+import ssafy.nfticket.dto.request.show.*;
+import ssafy.nfticket.entity.Shows;
+import ssafy.nfticket.repository.ShowRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,32 +23,32 @@ public class ShowService {
     private final ShowRepository showRepository;
 
     @Transactional
-    public Show addShow(ShowRequestDto showRequestDto) {
+    public Shows addShow(ShowRequestDto showRequestDto) {
 
-        Show show = new Show();
-        show.setCategoryName(showRequestDto.getCategory_name());
-        show.setName(showRequestDto.getName());
-        show.setDescription(showRequestDto.getDescription());
-        show.setRunningTime(showRequestDto.getRunning_time());
-        show.setAgeLimit(showRequestDto.getAge_limit());
-        show.setPosterUri(showRequestDto.getPoster_uri());
-        show.setVideoUri(showRequestDto.getVideo_uri());
-        show.setDefaultTicketImageUri(showRequestDto.getDefault_ticket_image_uri());
-        show.setAddress(null);
-        show.setShowScheduleId(null);
+        Shows shows = new Shows();
+        shows.setCategoryName(showRequestDto.getCategory_name());
+        shows.setName(showRequestDto.getName());
+        shows.setDescription(showRequestDto.getDescription());
+        shows.setRunningTime(showRequestDto.getRunning_time());
+        shows.setAgeLimit(showRequestDto.getAge_limit());
+        shows.setPosterUri(showRequestDto.getPoster_uri());
+        shows.setVideoUri(showRequestDto.getVideo_uri());
+        shows.setDefaultTicketImageUri(showRequestDto.getDefault_ticket_image_uri());
+        shows.setShowScheduleAddress(null);
+        shows.setShowScheduleId(null);
 
-        showRepository.save(show);
+        showRepository.save(shows);
 
-        return show;
+        return shows;
     }
 
 
-    public List<Show> getAllShow() {
+    public List<Shows> getAllShow() {
         return showRepository.findAll();
     }
 
 
-    public List<Show> searchShow(ShowSearchCondition showSearchCondition, Pageable pageable) {
+    public List<Shows> searchShow(ShowSearchCondition showSearchCondition, Pageable pageable) {
         return showRepository.searchByPageSimpleBoard(showSearchCondition, pageable);
     }
 
@@ -58,136 +58,137 @@ public class ShowService {
         return categoryNames;
     }
 
-    public Show getShow(Long showId) {
+    public Shows getShow(Long showId) {
         return showRepository.findById(showId).orElseThrow(() ->
                 new CustomException(ErrorCode.DATA_NOT_FOUND));
     }
 
     @Transactional
     public String updateShow(Long showId, ShowRequestDto showRequestDto) {
-        Show show = getShow(showId);
-        show.setCategoryName(showRequestDto.getCategory_name());
-        show.setName(showRequestDto.getName());
-        show.setDescription(showRequestDto.getDescription());
-        show.setRunningTime(showRequestDto.getRunning_time());
-        show.setAgeLimit(showRequestDto.getAge_limit());
-        show.setPosterUri(showRequestDto.getPoster_uri());
-        show.setVideoUri(showRequestDto.getVideo_uri());
-        show.setDefaultTicketImageUri(showRequestDto.getDefault_ticket_image_uri());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setCategoryName(showRequestDto.getCategory_name());
+        shows.setName(showRequestDto.getName());
+        shows.setDescription(showRequestDto.getDescription());
+        shows.setRunningTime(showRequestDto.getRunning_time());
+        shows.setAgeLimit(showRequestDto.getAge_limit());
+        shows.setPosterUri(showRequestDto.getPoster_uri());
+        shows.setVideoUri(showRequestDto.getVideo_uri());
+        shows.setDefaultTicketImageUri(showRequestDto.getDefault_ticket_image_uri());
+        shows.setStaff(showRequestDto.getStaff());
+        showRepository.save(shows);
         return "성공";
     }
 
     public String getCategoryName(Long showId) {
-        Show show = getShow(showId);
-        return show.getCategoryName();
+        Shows shows = getShow(showId);
+        return shows.getCategoryName();
     }
 
     @Transactional
     public String updateCategoryName(Long showId, SimpleShowCategoryDto simpleShowCategoryDto) {
-        Show show = getShow(showId);
-        show.setCategoryName(simpleShowCategoryDto.getCategoryName());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setCategoryName(simpleShowCategoryDto.getCategoryName());
+        showRepository.save(shows);
         return "성공";
     }
 
     public String getName(Long showId) {
-        Show show = getShow(showId);
-        return show.getName();
+        Shows shows = getShow(showId);
+        return shows.getName();
     }
 
     @Transactional
     public String updateName(Long showId, SimpleShowNameDto simpleShowNameDto) {
-        Show show = getShow(showId);
-        show.setName(simpleShowNameDto.getName());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setName(simpleShowNameDto.getName());
+        showRepository.save(shows);
         return "성공";
     }
 
     public String getDescription(Long showId) {
-        Show show = getShow(showId);
-        return show.getDescription();
+        Shows shows = getShow(showId);
+        return shows.getDescription();
     }
 
     @Transactional
     public String updateDescription(Long showId, SimpleShowDescDto simpleShowDescDto) {
-        Show show = getShow(showId);
-        show.setDescription(simpleShowDescDto.getDescription());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setDescription(simpleShowDescDto.getDescription());
+        showRepository.save(shows);
         return "성공";
     }
 
     public Integer getRunningTime(Long showId) {
-        Show show = getShow(showId);
-        return show.getRunningTime();
+        Shows shows = getShow(showId);
+        return shows.getRunningTime();
     }
 
     @Transactional
     public String updateRunningTime(Long showId, SimpleShowRunTimeDto simpleShowRunTimeDto) {
-        Show show = getShow(showId);
-        show.setRunningTime(simpleShowRunTimeDto.getRunningTime());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setRunningTime(simpleShowRunTimeDto.getRunningTime());
+        showRepository.save(shows);
         return "성공";
     }
 
     public Integer getAgeLimit(Long showId) {
-        Show show = getShow(showId);
-        return show.getAgeLimit();
+        Shows shows = getShow(showId);
+        return shows.getAgeLimit();
     }
 
     @Transactional
     public String updateAgeLimit(Long showId, SimpleShowAgeLimitDto simpleShowAgeLimitDto) {
-        Show show = getShow(showId);
-        show.setAgeLimit(simpleShowAgeLimitDto.getAgeLimit());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setAgeLimit(simpleShowAgeLimitDto.getAgeLimit());
+        showRepository.save(shows);
         return "성공";
     }
 
     public String getPosterUri(Long showId) {
-        Show show = getShow(showId);
-        return show.getPosterUri();
+        Shows shows = getShow(showId);
+        return shows.getPosterUri();
     }
 
     @Transactional
     public String updatePosterUri(Long showId, SimpleShowPosterUriDto simpleShowPosterUriDto) {
-        Show show = getShow(showId);
-        show.setPosterUri(simpleShowPosterUriDto.getPosterUri());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setPosterUri(simpleShowPosterUriDto.getPosterUri());
+        showRepository.save(shows);
         return "성공";
     }
 
     public String getVideoUri(Long showId) {
-        Show show = getShow(showId);
-        return show.getVideoUri();
+        Shows shows = getShow(showId);
+        return shows.getVideoUri();
     }
 
     @Transactional
     public String updateVideoUri(Long showId, SimpleShowVideoUriDto simpleShowVideoUriDto){
-        Show show = getShow(showId);
-        show.setVideoUri(simpleShowVideoUriDto.getVideoUri());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setVideoUri(simpleShowVideoUriDto.getVideoUri());
+        showRepository.save(shows);
         return "성공";
     }
 
     public String getDefaultTicketImageUri(Long showId) {
-        Show show = getShow(showId);
-        return show.getDefaultTicketImageUri();
+        Shows shows = getShow(showId);
+        return shows.getDefaultTicketImageUri();
     }
 
     @Transactional
     public String updateDefaultTicketImageUri(Long showId, SimpleShowDefaultTicketImgDto simpleShowDefaultTicketImgDto) {
-        Show show = getShow(showId);
-        show.setDefaultTicketImageUri(simpleShowDefaultTicketImgDto.getDefaultTicketImageUri());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setDefaultTicketImageUri(simpleShowDefaultTicketImgDto.getDefaultTicketImageUri());
+        showRepository.save(shows);
         return "성공";
     }
 
     @Transactional
     public String addShowScheduleAddress(Long showId, SimpleShowAddressScheduleDto simpleShowAddressScheduleDto) {
-        Show show = getShow(showId);
-        show.setAddress(simpleShowAddressScheduleDto.getAddress());
-        show.setShowScheduleId(simpleShowAddressScheduleDto.getShowScheduleId());
-        showRepository.save(show);
+        Shows shows = getShow(showId);
+        shows.setShowScheduleAddress(simpleShowAddressScheduleDto.getAddress());
+        shows.setShowScheduleId(simpleShowAddressScheduleDto.getShowScheduleId());
+        showRepository.save(shows);
         return "성공";
     }
 

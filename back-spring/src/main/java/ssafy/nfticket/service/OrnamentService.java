@@ -1,8 +1,8 @@
 package ssafy.nfticket.service;
 
 import org.springframework.stereotype.Service;
-import ssafy.nfticket.dto.ornament.OrnamentDto;
-import ssafy.nfticket.dto.request.OrnamentRequestDto;
+import ssafy.nfticket.dto.request.ornament.OrnamentDto;
+import ssafy.nfticket.dto.request.ornament.OrnamentRequestDto;
 
 import java.util.List;
 

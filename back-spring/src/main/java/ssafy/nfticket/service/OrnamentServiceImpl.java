@@ -3,10 +3,10 @@ package ssafy.nfticket.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ssafy.nfticket.dto.ornament.OrnamentDto;
-import ssafy.nfticket.dto.request.OrnamentRequestDto;
-import ssafy.nfticket.dto.response.repository.OrnamentRepository;
-import ssafy.nfticket.dto.response.repository.ProfileRepository;
+import ssafy.nfticket.dto.request.ornament.OrnamentDto;
+import ssafy.nfticket.dto.request.ornament.OrnamentRequestDto;
+import ssafy.nfticket.repository.OrnamentRepository;
+import ssafy.nfticket.repository.ProfileRepository;
 import ssafy.nfticket.entity.Ornament;
 import ssafy.nfticket.entity.Profile;
 
@@ -25,9 +25,9 @@ public class OrnamentServiceImpl implements OrnamentService {
     public List<OrnamentDto> getOrnamentList(String walletAddress) {
         Profile profile = profileRepository.findTop1ByWalletId(walletAddress);
         List<OrnamentDto> ornamentList = new ArrayList<>();
-        for (Ornament o : profile.getOrnaments()) {
+        for (Ornament o : profile.getOrnamentList()) {
             ornamentList.add(new OrnamentDto(walletAddress, o.getExhibitType(),
-                    o.getXPos(), o.getYPos(), o.getZPos(), o.getIpfsURL()));
+                    o.getXPos(), o.getYPos(), o.getZPos(), o.getImageUri()));
         }
         return ornamentList;
     }
@@ -39,7 +39,7 @@ public class OrnamentServiceImpl implements OrnamentService {
         System.out.println(ornamentRequestDto.toString());
         Ornament ornament = Ornament.builder().exhibitType(ornamentRequestDto.getExhibitType())
                 .angle(ornamentRequestDto.getAngle()).xPos(ornamentRequestDto.getXpos()).yPos(ornamentRequestDto.getYpos())
-                .zPos(ornamentRequestDto.getZpos()).ipfsURL(ornamentRequestDto.getIpfsURL()).profile(profile).build();
+                .zPos(ornamentRequestDto.getZpos()).imageUri(ornamentRequestDto.getIpfsURL()).profile(profile).build();
         Ornament dbOrnament = ornamentRepository.save(ornament);
         ornamentRepository.flush();
         return dbOrnament.getProfile().getWalletId();
