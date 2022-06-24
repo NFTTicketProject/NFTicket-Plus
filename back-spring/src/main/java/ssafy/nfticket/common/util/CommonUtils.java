@@ -1,4 +1,4 @@
-package ssafy.nfticket.util;
+package ssafy.nfticket.common.util;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
