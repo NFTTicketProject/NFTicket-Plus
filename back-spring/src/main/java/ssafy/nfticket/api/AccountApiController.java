@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ssafy.nfticket.dto.profile.SimpleProfileImageUriDto;
-import ssafy.nfticket.dto.profile.SimpleProfileInfoDto;
-import ssafy.nfticket.dto.profile.SimpleProfileDescDto;
-import ssafy.nfticket.dto.profile.SimpleProfileNicknameDto;
+import ssafy.nfticket.dto.request.profile.SimpleProfileImageUriDto;
+import ssafy.nfticket.dto.request.profile.SimpleProfileInfoDto;
+import ssafy.nfticket.dto.request.profile.SimpleProfileDescDto;
+import ssafy.nfticket.dto.request.profile.SimpleProfileNicknameDto;
 import ssafy.nfticket.entity.Profile;
 import ssafy.nfticket.service.ProfileService;
 
