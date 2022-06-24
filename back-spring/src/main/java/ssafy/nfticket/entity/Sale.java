@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
  * 판매 정보
  */
 @Entity
-@Table(name = "sale")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,5 +22,13 @@ public class Sale {
     private String description;
     private Integer startedAt;
     private Integer endedAt;
+
+    @OneToOne
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
+
+    @OneToOne
+    @JoinColumn(name = "shows_id")
+    private Shows shows;
 
 }

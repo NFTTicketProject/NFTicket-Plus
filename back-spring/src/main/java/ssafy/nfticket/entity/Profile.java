@@ -10,7 +10,6 @@ import java.util.List;
  * 해당 유저 관련 정보
  */
 @Entity
-@Table(name = "profile")
 @Getter
 @Setter
 @NoArgsConstructor //(access = AccessLevel.PROTECTED)
@@ -27,7 +26,13 @@ public class Profile {
     private String imageUri;
     private String gallery;
 
-    @OneToMany(mappedBy = "profile",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Ornament> ornaments = new ArrayList<>();
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ornament> ornamentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> ticketList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Shows> showsList = new ArrayList<>();
 
 }
