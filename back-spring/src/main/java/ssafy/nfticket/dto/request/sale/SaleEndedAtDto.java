@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class SaleEndedAtDto {
-    long saleId;
+    Long saleId;
     Integer endedAt;
 }

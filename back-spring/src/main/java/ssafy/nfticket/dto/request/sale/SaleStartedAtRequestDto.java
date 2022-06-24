@@ -4,6 +4,5 @@ import lombok.Data;
 
 @Data
 public class SaleStartedAtRequestDto {
-
     Integer started_at;
 }

@@ -1,6 +1,7 @@
 package ssafy.nfticket.dto.request.sale;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,18 +10,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 public class SaleRequestDto {
 
     @NotNull
-    int show_schedule_id;
+    Integer show_schedule_id;
     @NotBlank(message = "유효하지 않은 소개입니다.")
     String description;
     @Max(Integer.MAX_VALUE)
-    int started_at;
+    Integer started_at;
     @Max(Integer.MAX_VALUE)
-    int ended_at;
+    Integer ended_at;
 
 }

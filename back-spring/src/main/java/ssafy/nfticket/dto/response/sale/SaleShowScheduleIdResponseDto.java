@@ -4,6 +4,6 @@ import lombok.Data;
 @Data
 public class SaleShowScheduleIdResponseDto {
 
-    int show_schedule_id;
+    Integer show_schedule_id;
 
 }
