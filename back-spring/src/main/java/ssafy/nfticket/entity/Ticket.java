@@ -7,22 +7,25 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder
-public class Ornament {
+public class Ticket {
     @Id @GeneratedValue
     private Long id;
 
-    private String exhibitType;
-    private Float angle;
-    private Float xPos;
-    private Float yPos;
-    private Float zPos;
+    private Integer saleId;
     private String imageUri;
+    private String blockHash;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     private Profile profile;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shows_id")
+    private Shows shows;
+
+    @OneToOne(mappedBy = "ticket")
+    private Sale sale;
 
 }

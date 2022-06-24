@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ssafy.nfticket.dto.request.*;
-import ssafy.nfticket.dto.response.*;
-import ssafy.nfticket.dto.sale.*;
-import ssafy.nfticket.dto.profile.SimpleProfileDescDto;
+import ssafy.nfticket.dto.request.sale.*;
+import ssafy.nfticket.dto.response.sale.*;
 import ssafy.nfticket.service.SaleService;
 
 import javax.validation.Valid;

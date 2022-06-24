@@ -1,8 +1,7 @@
 package ssafy.nfticket.service;
 
 import org.springframework.stereotype.Service;
-import ssafy.nfticket.dto.request.*;
-import ssafy.nfticket.dto.sale.*;
+import ssafy.nfticket.dto.request.sale.*;
 
 import java.util.List;
 

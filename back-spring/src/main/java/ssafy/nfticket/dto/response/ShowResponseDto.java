@@ -1,7 +1,7 @@
 package ssafy.nfticket.dto.response;
 
 import lombok.Data;
-import ssafy.nfticket.entity.Show;
+import ssafy.nfticket.entity.Shows;
 
 @Data
 public class ShowResponseDto {
@@ -16,17 +16,19 @@ public class ShowResponseDto {
     private String default_ticket_image_uri;
     private String show_schedule_address;
     private Integer show_schedule_id;
+    private String staff;
 
-    public ShowResponseDto(Show show) {
-        this.category_name = show.getCategoryName();
-        this.name = show.getName();
-        this.description = show.getDescription();
-        this.running_time = show.getRunningTime();
-        this.age_limit = show.getAgeLimit();
-        this.poster_uri = show.getPosterUri();
-        this.video_uri = show.getVideoUri();
-        this.default_ticket_image_uri = show.getDefaultTicketImageUri();
-        this.show_schedule_address = show.getAddress();
-        this.show_schedule_id = show.getShowScheduleId();
+    public ShowResponseDto(Shows shows) {
+        this.category_name = shows.getCategoryName();
+        this.name = shows.getName();
+        this.description = shows.getDescription();
+        this.running_time = shows.getRunningTime();
+        this.age_limit = shows.getAgeLimit();
+        this.poster_uri = shows.getPosterUri();
+        this.video_uri = shows.getVideoUri();
+        this.default_ticket_image_uri = shows.getDefaultTicketImageUri();
+        this.show_schedule_address = shows.getShowScheduleAddress();
+        this.show_schedule_id = shows.getShowScheduleId();
+        this.staff = shows.getStaff();
     }
 }

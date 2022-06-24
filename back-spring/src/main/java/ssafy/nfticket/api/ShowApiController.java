@@ -6,11 +6,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ssafy.nfticket.dto.params.ShowSearchCondition;
-import ssafy.nfticket.dto.request.ShowRequestDto;
+import ssafy.nfticket.dto.request.show.ShowSearchCondition;
+import ssafy.nfticket.dto.request.show.ShowRequestDto;
+import ssafy.nfticket.dto.request.show.*;
 import ssafy.nfticket.dto.response.ShowResponseDto;
-import ssafy.nfticket.dto.show.*;
-import ssafy.nfticket.entity.Show;
+import ssafy.nfticket.entity.Shows;
 import ssafy.nfticket.service.ShowService;
 
 import javax.validation.Valid;
@@ -32,9 +32,9 @@ public class ShowApiController {
     @PostMapping()
     public ResponseEntity<SimpleShowIdDto> addShow(@RequestBody ShowRequestDto showRequestDto) {
 
-        Show newShow = showService.addShow(showRequestDto);
+        Shows newShows = showService.addShow(showRequestDto);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SimpleShowIdDto(newShow.getId()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SimpleShowIdDto(newShows.getId()));
     }
 
     /**
@@ -44,8 +44,8 @@ public class ShowApiController {
     @GetMapping()
     public ResponseEntity<List<ShowResponseDto>> getAllShow() {
 
-        List<Show> show = showService.getAllShow();
-        List<ShowResponseDto> result = show.stream().map(x -> new ShowResponseDto(x)).collect(Collectors.toList());
+        List<Shows> shows = showService.getAllShow();
+        List<ShowResponseDto> result = shows.stream().map(x -> new ShowResponseDto(x)).collect(Collectors.toList());
 
         return ResponseEntity.ok().body(result);
     }
@@ -71,8 +71,8 @@ public class ShowApiController {
         showSearchCondition.setMin_age_limit(min_age_limit);
         showSearchCondition.setMax_age_limit(max_age_limit);
 
-        List<Show> showSearch = showService.searchShow(showSearchCondition, pageable);
-        List<ShowResponseDto> result = showSearch.stream().map(ShowResponseDto::new).collect(Collectors.toList());
+        List<Shows> showsSearches = showService.searchShow(showSearchCondition, pageable);
+        List<ShowResponseDto> result = showsSearches.stream().map(ShowResponseDto::new).collect(Collectors.toList());
 
 
         return ResponseEntity.ok().body(result);
@@ -247,8 +247,8 @@ public class ShowApiController {
     * */
     @GetMapping("/{showId}/show-schedule")
     public ResponseEntity<SimpleShowAddressScheduleDto> getShowSchedule(@PathVariable("showId") Long showId) {
-        Show show = showService.getShow(showId);
-        return ResponseEntity.ok().body(new SimpleShowAddressScheduleDto(show.getShowScheduleId(), show.getAddress()));
+        Shows shows = showService.getShow(showId);
+        return ResponseEntity.ok().body(new SimpleShowAddressScheduleDto(shows.getShowScheduleId(), shows.getShowScheduleAddress()));
     }
 
     /*

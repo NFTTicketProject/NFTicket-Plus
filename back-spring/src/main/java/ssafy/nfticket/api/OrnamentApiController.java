@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ssafy.nfticket.dto.ornament.OrnamentDto;
-import ssafy.nfticket.dto.request.OrnamentRequestDto;
+import ssafy.nfticket.dto.request.ornament.OrnamentDto;
+import ssafy.nfticket.dto.request.ornament.OrnamentRequestDto;
 import ssafy.nfticket.service.OrnamentService;
 
 import javax.validation.Valid;

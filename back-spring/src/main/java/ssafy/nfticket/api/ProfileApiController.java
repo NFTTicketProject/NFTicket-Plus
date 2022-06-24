@@ -5,12 +5,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ssafy.nfticket.dto.profile.*;
-import ssafy.nfticket.dto.response.ErrorResponse;
-import ssafy.nfticket.dto.simple.SimpleProfileDto;
+import ssafy.nfticket.dto.request.profile.*;
 import ssafy.nfticket.entity.Profile;
 import ssafy.nfticket.service.ProfileService;
-import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequiredArgsConstructor
@@ -117,7 +114,9 @@ public class ProfileApiController {
         }
     }
 
-
+//
+//    @GetMapping("/address-by-nickname")
+//    public ResponseEntity<> getWalletIdByNickname()
 
 
 }
