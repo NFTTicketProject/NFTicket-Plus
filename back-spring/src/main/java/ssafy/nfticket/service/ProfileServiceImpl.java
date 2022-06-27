@@ -47,7 +47,6 @@ public class ProfileServiceImpl implements ProfileService {
         profile.setNickname(updatedProfileInfo.getNickname());
         profile.setDescription(updatedProfileInfo.getDescription());
         profile.setImageUri(updatedProfileInfo.getImageUri());
-        profile.setGallery(updatedProfileInfo.getGallery());
         profileRepository.save(profile);
 
         return profile;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ssafy.nfticket.common.error.CustomException;
 import ssafy.nfticket.common.error.ErrorCode;
-import ssafy.nfticket.dto.request.block.SimpleBlockHashTicketDto;
+import ssafy.nfticket.dto.request.ticket.SimpleBlockHashTicketDto;
 import ssafy.nfticket.entity.Ticket;
 import ssafy.nfticket.repository.TicketRepository;
 

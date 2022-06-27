@@ -1,7 +1,7 @@
 package ssafy.nfticket.service;
 
 import org.springframework.stereotype.Service;
-import ssafy.nfticket.dto.request.block.SimpleBlockHashTicketDto;
+import ssafy.nfticket.dto.request.ticket.SimpleBlockHashTicketDto;
 
 @Service
 public interface BlockService {

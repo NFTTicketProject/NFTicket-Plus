@@ -1,4 +1,4 @@
-package ssafy.nfticket.dto.request.block;
+package ssafy.nfticket.dto.request.ticket;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

@@ -22,7 +22,6 @@ public class OrnamentApiController {
     @PostMapping("/{walletAddress}")
     public ResponseEntity registerOrnament(@PathVariable @NotNull String walletAddress,
                                            @RequestBody @Valid OrnamentRequestDto ornamentRequestDto) throws Exception {
-        System.out.println(ornamentRequestDto.toString());
         try {
             if (ornamentService.register(walletAddress, ornamentRequestDto).equals(walletAddress)) {
                 return ResponseEntity.ok().body("Ornament register Success");

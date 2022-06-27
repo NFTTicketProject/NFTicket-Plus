@@ -34,7 +34,6 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    @Transactional
     public List<SaleDto> getSaleList() {
 
         List<Sale> saleList = saleRepository.findAll();

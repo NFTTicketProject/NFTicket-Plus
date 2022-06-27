@@ -19,7 +19,7 @@ public class Sale {
     private Long id;
 
     private Integer showScheduleId;
-    private String description;
+    private String description = "기본 소개문입니다.";
     private Integer startedAt;
     private Integer endedAt;
 
