@@ -260,4 +260,21 @@ public class ShowApiController {
         return ResponseEntity.ok().body(showService.addShowScheduleAddress(showId, simpleShowAddressScheduleDto));
     }
 
+    /*
+    * 공연 스태프 정보 반환
+    * */
+    @GetMapping("/{showId}/staff")
+    public ResponseEntity<SimpleShowStaffDto> getShowStaff(@PathVariable("showId") Long showId) {
+        return ResponseEntity.ok().body(new SimpleShowStaffDto(showService.getShowStaff(showId)));
+    }
+
+    /*
+    * 공연 스태프 목록 수정
+    * */
+    @PutMapping("/{showId}/staff")
+    public ResponseEntity<String> updateShowStaff(@PathVariable("showId") Long showId,
+                                                  @RequestBody SimpleShowStaffDto simpleShowStaffDto) {
+        return ResponseEntity.ok().body(showService.updateShowStaff(showId, simpleShowStaffDto));
+    }
+
 }

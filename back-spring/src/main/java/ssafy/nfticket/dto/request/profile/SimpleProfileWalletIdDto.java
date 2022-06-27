@@ -8,11 +8,12 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @NoArgsConstructor
-public class SimpleProfileImageUriDto {
-    @JsonProperty(value="image_uri")
-    private String imageUri;
+public class SimpleProfileWalletIdDto {
+    @NotBlank()
+    @JsonProperty(value = "wallet_id")
+    private String walletId;
 
-    public SimpleProfileImageUriDto(String imageUri) {
-        this.imageUri = imageUri;
+    public SimpleProfileWalletIdDto(String walletId) {
+        this.walletId = walletId;
     }
 }

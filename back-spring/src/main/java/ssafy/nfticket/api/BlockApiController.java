@@ -3,8 +3,8 @@ package ssafy.nfticket.api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ssafy.nfticket.dto.block.SimpleBlockHashDto;
-import ssafy.nfticket.dto.block.SimpleBlockHashTicketDto;
+import ssafy.nfticket.dto.request.block.SimpleBlockHashDto;
+import ssafy.nfticket.dto.request.block.SimpleBlockHashTicketDto;
 import ssafy.nfticket.service.BlockService;
 
 @RestController
@@ -27,7 +27,7 @@ public class BlockApiController {
      */
 
     @GetMapping("/{ticketId}")
-    public ResponseEntity<SimpleBlockHashDto> getBlockHash(@PathVariable("ticketId") Integer ticketId) {
-        return ResponseEntity.ok().body(blockService.getBlockHash(ticketId));
+    public ResponseEntity<SimpleBlockHashDto> getBlockHash(@PathVariable("ticketId") Long ticketId) {
+        return ResponseEntity.ok().body(new SimpleBlockHashDto(blockService.getBlockHash(ticketId)));
     }
 }

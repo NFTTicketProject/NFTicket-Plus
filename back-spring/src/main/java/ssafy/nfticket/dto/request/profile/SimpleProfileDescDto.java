@@ -8,7 +8,6 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 public class SimpleProfileDescDto {
-    @NotBlank()
     private String description;
 
     public SimpleProfileDescDto(String description) {

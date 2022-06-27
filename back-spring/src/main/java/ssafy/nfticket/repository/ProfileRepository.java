@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
     Profile findTop1ByWalletId(String walletAddress);
+    Profile findTop1ByNickname(String nickname);
 }
