@@ -114,9 +114,11 @@ public class ProfileApiController {
         }
     }
 
-//
-//    @GetMapping("/address-by-nickname")
-//    public ResponseEntity<> getWalletIdByNickname()
+
+    @PostMapping("/address-by-nickname")
+    public ResponseEntity<SimpleProfileWalletIdDto> getWalletIdByNickname(@RequestBody SimpleProfileNicknameDto simpleProfileNicknameDto) {
+        return ResponseEntity.ok().body(new SimpleProfileWalletIdDto(profileService.getWalletIdByNickname(simpleProfileNicknameDto.getNickname())));
+    }
 
 
 }

@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ssafy.nfticket.dto.request.profile.SimpleProfileImageUriDto;
-import ssafy.nfticket.dto.request.profile.SimpleProfileInfoDto;
-import ssafy.nfticket.dto.request.profile.SimpleProfileDescDto;
-import ssafy.nfticket.dto.request.profile.SimpleProfileNicknameDto;
+import ssafy.nfticket.dto.request.profile.*;
 import ssafy.nfticket.entity.Profile;
 import ssafy.nfticket.service.ProfileService;
 
@@ -86,6 +83,19 @@ public class AccountApiController {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
         }
         Profile updatedProfile = profileService.updateImageUri(profile, updatedProfileImageDto.getImageUri());
+        return ResponseEntity.ok().body(updatedProfile);
+    }
+
+    @PatchMapping("{walletAddress}/gallery")
+    public ResponseEntity updateGallerySize(@PathVariable("walletAddress") String walletAddress,
+                                                    @RequestBody SimpleProfileGalleryDto simpleProfileGalleryDto) {
+        Profile profile;
+        try {
+            profile = profileService.getProfile(walletAddress);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
+        }
+        Profile updatedProfile = profileService.updateGallerySize(profile, simpleProfileGalleryDto.getGallery());
         return ResponseEntity.ok().body(updatedProfile);
     }
 

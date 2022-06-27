@@ -70,4 +70,16 @@ public class ProfileService {
         profileRepository.save(profile);
         return profile;
     }
+
+    @Transactional
+    public Profile updateGallerySize(Profile profile, String gallery) {
+        profile.setGallery(gallery);
+        profileRepository.save(profile);
+        return profile;
+    }
+
+    public String getWalletIdByNickname(String nickname) {
+        Profile profile = profileRepository.findTop1ByNickname(nickname);
+        return profile.getWalletId();
+    }
 }
