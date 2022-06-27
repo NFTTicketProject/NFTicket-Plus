@@ -14,12 +14,9 @@ public class SimpleProfileInfoDto {
     @JsonProperty(value="image_uri")
     private String imageUri;
 
-    private String gallery;
-
     public SimpleProfileInfoDto(String nickname, String description, String imageUri, String gallery) {
         this.nickname = nickname;
         this.description = description;
         this.imageUri = imageUri;
-        this.gallery = gallery;
     }
 }

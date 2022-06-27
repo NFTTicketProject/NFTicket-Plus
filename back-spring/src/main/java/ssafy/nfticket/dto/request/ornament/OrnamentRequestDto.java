@@ -18,6 +18,5 @@ public class OrnamentRequestDto {
     float xpos;
     float ypos;
     float zpos;
-    @URL(message ="URL 값이 아닙니다.")
     String ipfsURL;
 }
