@@ -36,6 +36,7 @@ public class ShowService {
         shows.setDefaultTicketImageUri(showRequestDto.getDefault_ticket_image_uri());
         shows.setShowScheduleAddress(null);
         shows.setShowScheduleId(null);
+        shows.setStaff(showRequestDto.getStaff());
 
         showRepository.save(shows);
 
@@ -192,7 +193,18 @@ public class ShowService {
         return "성공";
     }
 
+    public String getShowStaff(Long showId) {
+        Shows shows = getShow(showId);
+        return shows.getStaff();
+    }
 
+    @Transactional
+    public String updateShowStaff(Long showId, SimpleShowStaffDto simpleShowStaffDto) {
+        Shows shows = getShow(showId);
+        shows.setStaff(simpleShowStaffDto.getStaff());
+        showRepository.save(shows);
+        return "성공";
+    }
 
 
 
