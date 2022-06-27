@@ -36,7 +36,6 @@ public class OrnamentServiceImpl implements OrnamentService {
     @Override
     public String register(String walletAddress, OrnamentRequestDto ornamentRequestDto) {
         Profile profile = profileRepository.findTop1ByWalletId(walletAddress);
-        System.out.println(ornamentRequestDto.toString());
         Ornament ornament = Ornament.builder().exhibitType(ornamentRequestDto.getExhibitType())
                 .angle(ornamentRequestDto.getAngle()).xPos(ornamentRequestDto.getXpos()).yPos(ornamentRequestDto.getYpos())
                 .zPos(ornamentRequestDto.getZpos()).imageUri(ornamentRequestDto.getIpfsURL()).profile(profile).build();
