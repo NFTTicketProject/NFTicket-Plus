@@ -24,7 +24,7 @@ public class Profile {
     private String description;
     private Integer createdAt;
     private String imageUri;
-    private String gallery;
+    private String gallery = "galleryS";
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ornament> ornamentList = new ArrayList<>();
