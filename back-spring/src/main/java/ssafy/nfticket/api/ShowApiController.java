@@ -105,7 +105,7 @@ public class ShowApiController {
 
 
     /*
-    * 공연 카데고리 명 반환
+    * 공연 카테고리 명 반환
     * */
     @GetMapping("/{showId}/category-name")
     public ResponseEntity<SimpleShowCategoryDto> getShowCategoryName(@PathVariable("showId")Long showId){
@@ -113,7 +113,7 @@ public class ShowApiController {
     }
 
     /*
-    * 공연 카데고리 명 수정
+    * 공연 카테고리 명 수정
     * */
     @PatchMapping("/{showId}/category-name")
     public ResponseEntity<String> updateShowCategoryName(@PathVariable("showId") Long showId,
