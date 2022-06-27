@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 public class SimpleProfileImageUriDto {
-    @NotBlank()
     @JsonProperty(value="image_uri")
     private String imageUri;
 

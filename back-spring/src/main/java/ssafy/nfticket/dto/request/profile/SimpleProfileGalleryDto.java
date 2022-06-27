@@ -6,7 +6,6 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 public class SimpleProfileGalleryDto {
-    @NotBlank()
     private String gallery;
 
     public SimpleProfileGalleryDto(String gallery) {
