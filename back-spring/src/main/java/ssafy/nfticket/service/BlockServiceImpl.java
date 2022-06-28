@@ -19,8 +19,8 @@ public class BlockServiceImpl implements BlockService{
     @Transactional
     @Override
     public String addBlockHash(SimpleBlockHashTicketDto simpleBlockHashTicketDto) {
-        Ticket ticket = ticketRepository.findById(simpleBlockHashTicketDto.getTicketId()).orElseThrow(() ->
-                new CustomException(ErrorCode.DATA_NOT_FOUND));
+        Ticket ticket = new Ticket();
+        ticket.setTicketId(simpleBlockHashTicketDto.getTicketId());
         ticket.setBlockHash(simpleBlockHashTicketDto.getBlockHash());
         ticketRepository.save(ticket);
         return "성공";
@@ -28,7 +28,7 @@ public class BlockServiceImpl implements BlockService{
 
     @Override
     public String getBlockHash(Long ticketId) {
-        Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() ->
+        Ticket ticket = ticketRepository.findByTicketId(ticketId).orElseThrow(() ->
                 new CustomException(ErrorCode.DATA_NOT_FOUND));
 
         return ticket.getBlockHash();
