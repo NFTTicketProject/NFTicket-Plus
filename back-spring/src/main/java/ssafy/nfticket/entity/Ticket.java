@@ -14,6 +14,7 @@ public class Ticket {
     private Long id;
 
     private Integer saleId;
+    private Long ticketId; // 블록체인에서의 블록번호
     private String imageUri;
     private String blockHash;
 
