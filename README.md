@@ -164,14 +164,7 @@ _- 당신의 추억의 조각을 기록하고 소유할 수 있도록 -_
 -   [아키텍처](docs/docs/아키텍처.md)
 -   [와이어프레임](docs/docs/와이어프레임.md)
 -   [컨벤션](docs/docs/컨벤션.md)
--   [API](docs/docs/apidocs.pdf)
 -   [시스템기술서](docs/docs/NFTicket_시스템_기술서.pdf)
-
-## ✔ 프로젝트 결과물
-
--   [포팅메뉴얼](docs/docs/NFTicket_포팅_메뉴얼.pdf)
--   [중간발표자료](docs/docs/NFTicket_midterm.pdf)
--   [최종발표자료](docs/docs/NFTicket - 최종.pdf)
 
 ## ✔ NFTicket 서비스 화면
 
