@@ -62,8 +62,8 @@ const TicketDetail = ({ getAccount }) => {
 
       // 백에서 정보 가져오기
       const showInfo = await axios.get(`https://nfticket.plus/api/v1/show/${showId}`);
-      // console.log("🎃", showInfo);
       setShowDetailBack(showInfo.data);
+      // console.log("res", showInfo.data);
 
       const stageName = await showScheduleContract.methods.getStageName().call();
       const ticketClassCount = await showScheduleContract.methods.getTicketClassCount().call();
@@ -314,7 +314,7 @@ const TicketDetail = ({ getAccount }) => {
   // }, []);
 
   // console.log("showDetail", showDetail);
-  // console.log("showDetail", showDetail);
+  // console.log("showDetail", showDetailBack);
   // console.log("ticketInfo", ticketInfo.owner);
   // console.log("ticketUri", ticketInfo.ticketUri);
 
@@ -362,7 +362,7 @@ const TicketDetail = ({ getAccount }) => {
             showDuration={`${showDetailBack.running_time}`}
             showTitle={`${showDetailBack.name}`}
             catetory={`${showDetailBack.category_name}`}
-            casting={`${showDetailBack.staffs}`}
+            casting={`${showDetailBack.staff}`}
             posterUri={`${showDetail.ticketImage}`}
             ticketId={ticketId} // 티켓 id
             ticketClassName={showDetail.ticketClassName}
@@ -393,7 +393,7 @@ const TicketDetail = ({ getAccount }) => {
             showDuration={`${showDetailBack.running_time}`}
             showTitle={`${showDetailBack.name}`}
             catetory={`${showDetailBack.category_name}`}
-            casting={`${showDetailBack.staffs}`}
+            casting={`${showDetailBack.staff}`}
             posterUri={`${showDetail.ticketImage}`}
             ticketId={ticketId} // 티켓 id
             ticketClassName={showDetail.ticketClassName}
@@ -428,7 +428,7 @@ const TicketDetail = ({ getAccount }) => {
             getAccount={getAccount}
             saleAddr={saleAddr}
             showTitle={`${showDetailBack.name}`} // 제목
-            casting={`${showDetailBack.staffs}`}
+            casting={`${showDetailBack.staff}`}
             price={ticketInfo.price}
             ticketId={ticketId}
             isSellable={isSellable} // 판매자인지 아닌지

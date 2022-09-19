@@ -2653,12 +2653,17 @@ const mintAnimalTokenAddress = "0xdDCdECe6524be448D1d2609D5430754bB06d835e";
 export const saleAnimalTokenAddress = "0xB30199f422DEc42ac5782d2D05777AD640f81447";
 //
 
-const myTicketAddress = "0x6f3979A34B484422590E94f97dA668783485EDf3";
-const showScheduleManagerAddress = "0xD3137385A8418276C9E0fFdf2D5033D0c99304f9";
+// 22.09.19.이전
+// const myTicketAddress = "0x6f3979A34B484422590E94f97dA668783485EDf3";
+// const showScheduleManagerAddress = "0xD3137385A8418276C9E0fFdf2D5033D0c99304f9";
 const showScheduleAddress = "";
-export const ticketSaleManagerAddress = "0x1b2440AA18695bD14ba886938319330C0d7c1113";
+// export const ticketSaleManagerAddress = "0x1b2440AA18695bD14ba886938319330C0d7c1113";
 const ticketSaleAddress = "";
 const IERC20Address = "0x6C927304104cdaa5a8b3691E0ADE8a3ded41a333";
+
+const myTicketAddress = "0x770Bf9DC025b6E60Dc44FF34c581404df1D2241E";
+const showScheduleManagerAddress = "0x551a54234f6EcAaedd07B2a4ca4D5f7230D4a86F";
+export const ticketSaleManagerAddress = "0x32e8078238fe6170A604bC8a922ea3197523d0Ad";
 
 export const web3 = new Web3(window.ethereum);
 

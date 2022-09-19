@@ -51,7 +51,7 @@ const Community = ()=>{
         </StyledCommunityLink> 
         <div style={{ display: "flex", justifyContent: "center", marginBottom: "100px" }}>
           <Link to="Community">
-          <CommunityImageContainer src='images/ssafy_community.gif'/>
+          <CommunityImageContainer src='images/example_community.gif'/>
           </Link>
             
         </div>

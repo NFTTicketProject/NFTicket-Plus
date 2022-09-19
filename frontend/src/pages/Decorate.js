@@ -280,7 +280,7 @@ const Decorate = () => {
                 // 기본사진 (최초 로딩 1회 있어야 작동 시작함)
                 loadImage: {
                   // path: "https://ipfs.io/ipfs/QmXRhj2jj3TJFHMq5C1qsxskcbTwdtAb1LSgeL6neT6MP8",
-                  path: "https://nfticket.plus/showipfs/ipfs/QmXRhj2jj3TJFHMq5C1qsxskcbTwdtAb1LSgeL6neT6MP8",
+                  path: "https://nfticket.plus/showipfs/ipfs/QmUoUqXoWV7HGgDfFwwKwC5aCQDHaUprf7iMQmHbCo2opv",
                   name: "SampleImage",
                 },
                 theme: myTheme,
