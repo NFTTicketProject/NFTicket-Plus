@@ -85,9 +85,9 @@ const Show = () => {
         // console.log("초기값", res.data);
         for (let show of res.data) {
           // console.log("공연", show);
-          var address = show.show_schedule_address[0];
-          if (!address) address = "0x7fda176A47EBa05A4fD2F6C95339164ab2817883";
-          callShowDetail(address, show.show_id, show.name, show.poster_uri);
+          var address = show.show_schedule_address;
+          if (!address) address = "0x6F9607468485c249e25156d49eFd6E15fd3A2fD1";
+          callShowDetail(address, show.show_schedule_id, show.name, show.poster_uri);
         }
       })
       .catch((err) => console.error(err));
@@ -112,6 +112,7 @@ const Show = () => {
 
   const callShowDetail = async (address, id, name, poster_uri) => {
     try {
+      console.log(address, id, name, poster_uri)
       const stageSeller = await showScheduleManagerContract.methods.ownerOf(id).call();
       var stageSellerName = await getUserNickname(stageSeller);
       const showScheduleContract = new web3.eth.Contract(showScheduleAbi, address);
@@ -193,9 +194,9 @@ const Show = () => {
         SetShowList([]);
         SetShowListSearch([]);
         for (let show of res.data) {
-          var address = show.show_schedule_address[0];
-          if (!address) address = "0x7fda176A47EBa05A4fD2F6C95339164ab2817883";
-          callShowDetail(address, show.show_id, show.name, show.poster_uri);
+          var address = show.show_schedule_address;
+          if (!address) address = "0x6F9607468485c249e25156d49eFd6E15fd3A2fD1";
+          callShowDetail(address, show.show_schedule_id, show.name, show.poster_uri);
         }
       })
       .catch((err) => console.error(err));

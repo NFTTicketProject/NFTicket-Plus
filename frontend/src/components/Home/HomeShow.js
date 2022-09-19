@@ -38,7 +38,7 @@ const HomeShow = (props) => {
 
   return (
     <PerformContainer>
-      <Link to={`/Detail/${props.show_schedule_address[0]}`}>
+      <Link to={`/Detail/${props.show_schedule_address}`}>
         <PosterImgContainer
           src={`https://nfticket.plus/showipfs/ipfs/${props.poster_uri}`}
           onError={handleError}
