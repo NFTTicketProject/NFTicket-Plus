@@ -35,9 +35,11 @@ const TicketInfo = (props) => {
 
   // api 통해 판매자의 닉네임과 이미지 가져오기
   const getSellerInfo = () => {
+    // console.log('owner', props.owner)
     if (props.owner) {
+      var ownerLower = props.owner.toLowerCase();
       axios
-        .get(`https://nfticket.plus/api/v1/profile/${props.owner}`)
+        .get(`https://nfticket.plus/api/v1/profile/${ownerLower}`)
         .then((res) => {
           // console.log('getSellerInfo', res.data);
           setSellerInfo(res.data);

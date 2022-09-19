@@ -295,7 +295,7 @@ function ShowDetail() {
   // console.log("🐸", ticketDetail);
   // console.log('seatInfo', seatInfo)
   // console.log("showDetail", showDetailBack.poster_uri);
-  // console.log('showDetailBack', showDetailBack)
+  console.log('showDetailBack', showDetailBack)
 
   return (
     <div style={{ paddingBottom: "100px" }}>
@@ -321,7 +321,7 @@ function ShowDetail() {
             <TopRight
               ticketDetail={ticketDetail}
               seatInfo={seatInfo}
-              casting={`${showDetailBack.staffs}`}
+              casting={`${showDetailBack.staff}`}
               showScheduleAddress={showScheduleAddress}
               // getAccount={getAccount}
               startedAt={`${showDetail.startedAt}`}
@@ -334,7 +334,7 @@ function ShowDetail() {
       <MiddleCss>
         <Middle
           description={`${showDetailBack.description}`}
-          casting={`${showDetailBack.staffs}`}
+          casting={`${showDetailBack.staff}`}
         ></Middle>
       </MiddleCss>
 

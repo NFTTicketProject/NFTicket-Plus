@@ -110,10 +110,15 @@ const Community = () => {
     unityContext.send("Image3", "SetUrl", image5);
     unityContext.send("Window1", "SetUrl", image1);
     unityContext.send("Window2", "SetUrl", image2);
-    unityContext.send("Zone1", "SetTitle", title2);
-    unityContext.send("Zone2", "SetTitle", title1);
-    unityContext.send("Zone1", "SetDesc", desc2);
-    unityContext.send("Zone2", "SetDesc", desc1);
+    unityContext.send("Zone1", "SetTitle", title1);
+    unityContext.send("Zone2", "SetTitle", title2);
+    unityContext.send("Zone1", "SetDesc", desc1);
+    unityContext.send("Zone2", "SetDesc", desc2);
+    // GalleryM 뒤집힘
+    // unityContext.send("Zone1", "SetTitle", title2);
+    // unityContext.send("Zone2", "SetTitle", title1);
+    // unityContext.send("Zone1", "SetDesc", desc2);
+    // unityContext.send("Zone2", "SetDesc", desc1);
   };
 
   // 닉네임을 wallet 으로
@@ -125,8 +130,9 @@ const Community = () => {
           nickname: name,
         }
       );
+      console.log('res',response);
       if (response) {
-        return response.data[0].wallet_id;
+        return response.data.wallet_id;
       } else {
         return null;
       }
@@ -139,7 +145,7 @@ const Community = () => {
   const walletToNickname = async (wallet) => {
     try {
       const response = await axios.get(
-        "https://nfticket.plus/api/v1/profile/" + wallet + "/nickname"
+        "https://nfticket.plus/api/v1/profile/nickname/" + wallet
       );
       if (response) {
         return response.data.nickname;
@@ -266,7 +272,7 @@ const Community = () => {
         // console.log("순서 측정 3", ticketArray);
         loadTickets();
         // 커뮤니티 입장하겠다는 선언
-      } else if (name === "commuSSAFY") {
+      } else if (name === "commuExample") {
         // 입장 조건을 갖추지 못했을때와 그럴때 둘 다 대응
         // console.log(nickname);
         if (nickname === "Guest") {
