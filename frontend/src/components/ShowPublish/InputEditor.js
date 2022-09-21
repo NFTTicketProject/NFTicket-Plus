@@ -62,8 +62,10 @@ function InputEditor({ onCreate }) {
           <StyledInput
             type='number'
             name='price'
-            placeholder='가격(SSF)'
-            value={state.price}
+            // placeholder='가격(SSF)'
+            placeholder='0 SSF'
+            disabled="True"
+            // value={state.price}
             onChange={handleChangeState}
           />
           <StyledInput

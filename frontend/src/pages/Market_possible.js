@@ -55,7 +55,7 @@ const TicketListArea = styled.div`
   margin-top: 20px;
 `;
 
-const Market = ({ getAccount, account }) => {
+const Market_possible = ({ getAccount, account }) => {
   const navigate = useNavigate();
   ////
   const [isBuyable, setIsBuyable] = useState(false); // 주인은 살 수 없도록 버튼 비활성화용
@@ -67,13 +67,13 @@ const Market = ({ getAccount, account }) => {
       if (!localStorage.getItem("userAccount")) {
         swal
           .fire({
-            title: "준비 중인 기능입니다.",
-            icon: "info",
+            title: "지갑을 연결해주세요.",
+            icon: "warning",
             closeOnClickOutside: false,
           })
           .then(function () {
             // 이벤트
-            navigate("/");
+            navigate("/MyPage");
             // alert('hello')
           });
         // alert('hello')
