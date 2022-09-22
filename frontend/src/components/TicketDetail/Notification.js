@@ -16,7 +16,7 @@ const Notification = () => {
       <NotiTitle>NFTicket 유의사항</NotiTitle>
       <ul>
         <Marginli>
-          구매는 SSAFY 네트워크 내 싸피코인(SSF)이 차감되는 방식으로 진행됩니다.
+          구매는 네트워크 내 코인(SSF)이 차감되는 방식으로 진행됩니다.
         </Marginli>
         <Marginli>
           구매에 필요한 금액은 판매가에 수수료를 더한 총금액으로 산정됩니다.
@@ -30,12 +30,12 @@ const Notification = () => {
           산정됩니다.
         </Marginli>
         <Marginli>
-          구매 가격 제안이 완료되면 해당 금액은 SSAFY 네트워크 내 거래 가능
+          구매 가격 제안이 완료되면 해당 금액은 네트워크 내 거래 가능
           금액에서 제외됩니다.
         </Marginli>
         <Marginli>
-          판매자가 가격 제안을 수락하면, SSAFY 지갑 계좌 내 계좌에서
-          싸피코인(SSF)이 차감되어 거래가 체결될 수 있습니다.
+          판매자가 가격 제안을 수락하면, 지갑 계좌 내 계좌에서
+          코인(SSF)이 차감되어 거래가 체결될 수 있습니다.
         </Marginli>
         <Marginli>NFT의 외부 입출금은 현재 지원하지 않습니다.</Marginli>
         <Marginli>

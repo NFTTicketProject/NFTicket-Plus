@@ -118,20 +118,13 @@ const Footer = () => {
       </LeftArea>
       <MiddleArea>
         <MiddleTop>
-          <MiddleTopUnits
-            onClick={() => {
-              window.open("https://www.ssafy.com/");
-            }}
-          >
-            SSAFY
-          </MiddleTopUnits>
           <MiddleTopUnits onClick={() => navigate("/guide")}>
             자주하는 질문(FAQ)
           </MiddleTopUnits>
           <MiddleTopUnits onClick={copyEmail}>1:1 문의하기</MiddleTopUnits>
         </MiddleTop>
         <MiddleMid>
-          NFTicket는 삼성청년소프트웨어아카데미 교육 중 제작된 NFT 기반의 티켓
+          NFTicket는 메타버스 & NFT 기반 투명한 공연 문화를 이끄는 티켓
           거래 플랫폼입니다.
           <br></br>해당 페이지 내에서 이루어지는 모든 거래는 가상으로 지급된
           토큰으로 진행되고 있습니다.
@@ -146,7 +139,7 @@ const Footer = () => {
             style={{ color: "#FFFFFF" }}
             onClick={() => {
               window.open(
-                "https://lab.ssafy.com/s06-blockchain-nft-sub2/S06P22A102",
+                "https://github.com/NFTTicketProject/NFTicket-Plus",
               );
             }}
           ></GitHubIcon>
