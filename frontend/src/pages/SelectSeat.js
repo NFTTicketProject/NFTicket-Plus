@@ -243,7 +243,7 @@ function SelectSeat({ getAccount }) {
       //   // console.log("돈부족", ticketDetail[myTicket.data[0]].ticketClassPrice);
       //   swal.fire({
       //     icon: "error",
-      //     title: "싸피 코인이 부족합니다.",
+      //     title: "코인이 부족합니다.",
       //     html: `보유 코인 : ${money}<br>필요 코인 : ${
       //       ticketDetail[myTicket.data[0]].ticketClassPrice
       //     }`,
