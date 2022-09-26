@@ -21,7 +21,7 @@ const Home = () => {
       <HomeSlider></HomeSlider>
       <TodayPerformance></TodayPerformance>
       <SpecialTicket></SpecialTicket>
-      {/* <Ticketo></Ticketo> */}
+      <Ticketo></Ticketo>
       <Community></Community>
     </HomeBox>
   );

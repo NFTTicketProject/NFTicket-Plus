@@ -24,7 +24,7 @@ const pages = [
   // "Profile",
   { name: "공연 등록", link: "ShowPublish" },
   { name: "공연몰", link: "Show" },
-  // { name: "티켓몰", link: "Market" },
+  { name: "티켓몰", link: "Market" },
   { name: "커뮤니티", link: "Community" },
   { name: "가이드", link: "Guide" },
   // { name: "상세인무언가", link: "Detail" },
