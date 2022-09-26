@@ -3,9 +3,9 @@
 // const axios = require("axios");
 
 // // 네트워크 기본 설정
-// const ssafyProvider = new Web3.providers.HttpProvider("http://20.196.209.2:8545");
+// const Provider = new Web3.providers.HttpProvider("http://20.196.209.2:8545");
 // //const localProvider = new Web3.providers.HttpProvider("http://localhost:7545");
-// const web3 = new Web3(ssafyProvider);
+// const web3 = new Web3(Provider);
 
 // // Contract sendTransaction 시 입력해야 할 것
 // // 1. 사피 지갑 정보 (walletAddress, privateKey)

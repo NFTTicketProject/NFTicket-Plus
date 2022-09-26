@@ -416,7 +416,7 @@ const Community = () => {
                   " 닉네임을 Guest(대소문자 구별)로 변경한 경우,
                 </p>
                 <p style={{ fontSize: "15px", fontWeight: 500 }}>
-                  SSAFY NFT 티켓이 없으셔도 커뮤니티에 들어가실 수 있습니다. "
+                  NFT 티켓이 없으셔도 커뮤니티에 들어가실 수 있습니다. "
                 </p>
               </div>
             </div>
