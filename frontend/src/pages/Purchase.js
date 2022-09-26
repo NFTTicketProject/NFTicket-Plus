@@ -63,11 +63,11 @@ const Purchase = () => {
 
   // 공연 발매 페이지에서 티켓 구매
   const registerTicket = async () => {
-    // 티켓 구매용 SSAFY 코인 접근 권한 부여
+    // 티켓 구매용 코인 접근 권한 부여
     const ssaftTokenInstance = new web3.eth.Contract(IERC20ABI, SSAFYTokenAddr);
     await ssaftTokenInstance.methods.approve(scheduleAddress, 100).send({ from: myAddresss });
 
-    // 티켓 판매자 SSAFY 코인 접근 권한 부여
+    // 티켓 판매자 코인 접근 권한 부여
     const ssaftTokenInstance2 = new web3.eth.Contract(IERC20ABI, SSAFYTokenAddr);
     await ssaftTokenInstance2.methods
       .approve(scheduleAddress, 100)
